@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmtegt1anmu5w"]
+
+[ext_resource type="Texture2D" uid="uid://dt27n1fae5lv6" path="res://assets/HDRIS/pretoria_gardens_4k.exr" id="1_axn5k"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_axn5k"]
+panorama = ExtResource("1_axn5k")
+
+[sub_resource type="Sky" id="Sky_6i45b"]
+sky_material = SubResource("PanoramaSkyMaterial_axn5k")
+
+[sub_resource type="Environment" id="Environment_rsfmm"]
+background_mode = 2
+sky = SubResource("Sky_6i45b")
+
+[node name="WE_Test" type="WorldEnvironment"]
+environment = SubResource("Environment_rsfmm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

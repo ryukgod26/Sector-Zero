@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://bocjrdjn6oogc"]
+
+[ext_resource type="Script" uid="uid://rd7eft4k6rhv" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
+[ext_resource type="PackedScene" uid="uid://daxalbse4veci" path="res://Scenes/Player/camera_controller.tscn" id="1_uvnfx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tugb3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tugb3"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uvnfx"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_a3d8c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_tugb3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+material_override = SubResource("StandardMaterial3D_tugb3")
+mesh = SubResource("CapsuleMesh_uvnfx")
+
+[node name="CameraController" parent="." instance=ExtResource("1_uvnfx")]
