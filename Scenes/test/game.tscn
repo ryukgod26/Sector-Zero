@@ -5,7 +5,7 @@
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nxjle"]
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nxjle"]
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qwbg2"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bkk7d"]
@@ -29,13 +29,13 @@ data = PackedVector3Array(0, 0.5, 0, 0, 0.5, 0, 0, 0.49769998, 0.0475, 0, 0.5, 0
 [node name="WE_Test" parent="." instance=ExtResource("1_dhce4")]
 
 [node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.5579305, 0, 0, 0, 3.5579305, 0, 0, 0, 3.5579305, 0, 0, 0)
+transform = Transform3D(30.4061, 0, 0, 0, 30.4061, 0, 0, 0, 30.4061, 0, 0, 0)
 mesh = SubResource("PlaneMesh_nxjle")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_nxjle")
+shape = SubResource("ConcavePolygonShape3D_qwbg2")
 
 [node name="Box" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50365555, 0)
@@ -48,7 +48,7 @@ mesh = SubResource("BoxMesh_nxjle")
 shape = SubResource("ConcavePolygonShape3D_dhce4")
 
 [node name="Sphere" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.4413278, 0, 0, 0, 1.4413278, 0, 0, 0, 1.4413278, -1.1775091, 0.700395, 2.0895224)
+transform = Transform3D(1.4413278, 0, 0, 0, 1.4413278, 0, 0, 0, 1.4413278, -1.1775091, 0.700395, 12.765807)
 material_override = SubResource("StandardMaterial3D_qwbg2")
 mesh = SubResource("SphereMesh_nxjle")
 
@@ -58,4 +58,6 @@ mesh = SubResource("SphereMesh_nxjle")
 shape = SubResource("ConcavePolygonShape3D_bkk7d")
 
 [node name="Player" parent="." instance=ExtResource("2_bkk7d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7426496, 1, 0)
+
+[node name="Node3D" type="Node3D" parent="."]
