@@ -8,6 +8,12 @@ const JUMP_VELOCITY = 4.5
 @export var CAMERA_CONTROLLER: Camera3D
 @export var MOUSE_SENSTIVITY: float = 0.5
 
+@export_range(5,10,0.1) var CROUCH_SPEED := 7.0
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var crouch_shapecast: ShapeCast3D = $Crouch_Shapecast
+
+
 var _mouse_input := false
 var _rotation_input: float
 var _tilt_input: float
@@ -15,17 +21,20 @@ var _mouse_rotation:Vector3
 var _player_rotation: Vector3
 var _camera_rotation: Vector3
 
+var is_crouching := false
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	crouch_shapecast.add_exception($".")
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
 	_update_camera(delta)
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor() and not is_crouching:
 		velocity.y += JUMP_VELOCITY
 	
 	var input_dir = Input.get_vector("move_left","move_right","move_forward","move_backward")
@@ -39,6 +48,10 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0 , SPEED)
 	
 	move_and_slide()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Crouch"):
+		toggle_crouch()
 
 func _update_camera(delta):
 	_mouse_rotation.x += _tilt_input * delta
@@ -63,3 +76,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		_rotation_input = -event.relative.x * MOUSE_SENSTIVITY
 		_tilt_input = -event.relative.y * MOUSE_SENSTIVITY
 		#print(Vector2(_rotation_input,_tilt_input))
+
+func toggle_crouch():
+	if is_crouching and not crouch_shapecast.is_colliding():
+		print("UnCrouching") 
+		animation_player.play("Crouch",-1,- CROUCH_SPEED,true)
+	elif not is_crouching:
+		animation_player.play("Crouch",-1,CROUCH_SPEED)
+		print("Crouching")
+
+
+func _on_animation_player_animation_started(anim_name: StringName) -> void:
+	if anim_name == "Crouch":
+		is_crouching = not is_crouching
