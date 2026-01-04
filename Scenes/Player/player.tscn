@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bocjrdjn6oogc"]
+[gd_scene load_steps=10 format=3 uid="uid://bocjrdjn6oogc"]
 
 [ext_resource type="Script" uid="uid://rd7eft4k6rhv" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
+[ext_resource type="PackedScene" uid="uid://blofjoh2qp8rd" path="res://Scenes/UI/ui.tscn" id="2_a3d8c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tugb3"]
 
@@ -128,5 +129,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("SphereShape3D_uvnfx")
 target_position = Vector3(0, 0.5, 0)
 debug_shape_custom_color = Color(0.4862745, 1, 0.4862745, 1)
+
+[node name="UI" parent="." instance=ExtResource("2_a3d8c")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+mouse_filter = 1
 
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
