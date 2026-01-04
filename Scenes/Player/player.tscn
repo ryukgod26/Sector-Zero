@@ -1,7 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bocjrdjn6oogc"]
+[gd_scene load_steps=13 format=3 uid="uid://bocjrdjn6oogc"]
 
 [ext_resource type="Script" uid="uid://rd7eft4k6rhv" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="PackedScene" uid="uid://blofjoh2qp8rd" path="res://Scenes/UI/ui.tscn" id="2_a3d8c"]
+[ext_resource type="Script" uid="uid://byk0ihjcoiugl" path="res://Scripts/State_Machines/state_machine.gd" id="3_xpcdj"]
+[ext_resource type="Script" uid="uid://enf23qbeq8fg" path="res://Scripts/State_Machines/States/idle_player_state.gd" id="4_mtuoh"]
+[ext_resource type="Script" uid="uid://e7fqnu76d5oq" path="res://Scripts/State_Machines/States/walking_player_state.gd" id="5_htcer"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tugb3"]
 
@@ -133,5 +136,15 @@ debug_shape_custom_color = Color(0.4862745, 1, 0.4862745, 1)
 [node name="UI" parent="." node_paths=PackedStringArray("PLAYER_CONTROLLER") instance=ExtResource("2_a3d8c")]
 mouse_filter = 2
 PLAYER_CONTROLLER = NodePath("..")
+
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
+script = ExtResource("3_xpcdj")
+CURRENT_STATE = NodePath("IdlePlayerState")
+
+[node name="IdlePlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("4_mtuoh")
+
+[node name="WalkingPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("5_htcer")
 
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]

@@ -30,8 +30,12 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	crouch_shapecast.add_exception($".")
 	_speed = DEFAULT_SPEED
+	Globals.player = self
 
 func _physics_process(delta: float) -> void:
+	
+	Globals.debug.add_property("Movement Speed",_speed,1)
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
