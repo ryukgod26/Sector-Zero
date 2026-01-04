@@ -131,11 +131,6 @@ target_position = Vector3(0, 0.5, 0)
 debug_shape_custom_color = Color(0.4862745, 1, 0.4862745, 1)
 
 [node name="UI" parent="." node_paths=PackedStringArray("PLAYER_CONTROLLER") instance=ExtResource("2_a3d8c")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 mouse_filter = 2
 PLAYER_CONTROLLER = NodePath("..")
 

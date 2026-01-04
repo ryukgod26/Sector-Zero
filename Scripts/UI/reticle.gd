@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 	adjust_reticle_lines()
 
 func _draw() -> void:
-	draw_circle(Vector2(0,0),DOT_RADIUS,DOT_COLOR)
+	draw_circle($Reticle.position,DOT_RADIUS,DOT_COLOR)
 
 func adjust_reticle_lines():
 	var vel = PLAYER_CONTROLLER.velocity

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://blofjoh2qp8rd"]
+[gd_scene load_steps=4 format=3 uid="uid://blofjoh2qp8rd"]
 
 [ext_resource type="Script" uid="uid://cg1e1ufdkw0r2" path="res://Scripts/UI/reticle.gd" id="1_ahcct"]
+[ext_resource type="Theme" uid="uid://ym37uhysyl0v" path="res://Scenes/UI/themes/debug.tres" id="2_de23q"]
+[ext_resource type="Script" uid="uid://cta5c48syafeo" path="res://Scripts/UI/debug_panel.gd" id="3_c7mb3"]
 
 [node name="UI" type="Control" node_paths=PackedStringArray("RETICAL_LINES")]
 layout_mode = 3
@@ -10,25 +12,50 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ahcct")
-RETICAL_LINES = [NodePath("Top"), NodePath("Right"), NodePath("Bottom"), NodePath("Left")]
+RETICAL_LINES = [NodePath("Reticle/Top"), NodePath("Reticle/Right"), NodePath("Reticle/Bottom"), NodePath("Reticle/Left")]
 
 [node name="Reticle" type="CenterContainer" parent="."]
 layout_mode = 1
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Top" type="Line2D" parent="."]
+[node name="Top" type="Line2D" parent="Reticle"]
 points = PackedVector2Array(0, -5, 0, -15)
 width = 2.0
 
-[node name="Right" type="Line2D" parent="."]
+[node name="Right" type="Line2D" parent="Reticle"]
 points = PackedVector2Array(5, 0, 15, 0)
 width = 2.0
 
-[node name="Bottom" type="Line2D" parent="."]
+[node name="Bottom" type="Line2D" parent="Reticle"]
 points = PackedVector2Array(0, 5, 0, 15)
 width = 2.0
 
-[node name="Left" type="Line2D" parent="."]
+[node name="Left" type="Line2D" parent="Reticle"]
 points = PackedVector2Array(-5, 0, -15, 0)
 width = 2.0
+
+[node name="DebugPanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 210.0
+offset_bottom = 50.0
+theme = ExtResource("2_de23q")
+script = ExtResource("3_c7mb3")
+
+[node name="MarginContainer" type="MarginContainer" parent="DebugPanel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugPanel/MarginContainer"]
+layout_mode = 2
