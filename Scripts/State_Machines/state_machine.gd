@@ -17,6 +17,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	CURRENT_STATE.update(delta)
 
+
 func _physics_process(delta: float) -> void:
 	CURRENT_STATE.physics_update(delta)
 	Globals.debug.add_property("State",CURRENT_STATE.name,1)

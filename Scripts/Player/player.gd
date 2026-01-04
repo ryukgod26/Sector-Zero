@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 const JUMP_VELOCITY = 4.5
 
+@export var ACCELERATION := 0.1
+@export var DEACCELERATION := 0.25
 @export var DEFAULT_SPEED := 5.
 @export var CROUCH_SPEED := 2.
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90)
@@ -47,11 +49,11 @@ func _physics_process(delta: float) -> void:
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction:
-		velocity.x = direction.x * _speed
-		velocity.z = direction.z * _speed
+		velocity.x = lerp(velocity.x, direction.x * _speed,ACCELERATION)
+		velocity.z = lerp(velocity.z,direction.z * _speed, ACCELERATION)
 	else:
-		velocity.x = move_toward(velocity.x, 0 , _speed)
-		velocity.z = move_toward(velocity.z, 0 , _speed)
+		velocity.x = move_toward(velocity.x, 0 , DEACCELERATION)
+		velocity.z = move_toward(velocity.z, 0 , DEACCELERATION)
 	 
 	move_and_slide()
 
