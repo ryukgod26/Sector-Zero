@@ -6,6 +6,7 @@ const JUMP_VELOCITY = 4.5
 @export var DEACCELERATION := 0.25
 @export var DEFAULT_SPEED := 5.
 @export var CROUCH_SPEED := 2.
+@export var SPRINT_SPEED := 7.
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90)
 @export var TILT_UPPER_LIMIT := deg_to_rad(90)
 @export var CAMERA_CONTROLLER: Camera3D

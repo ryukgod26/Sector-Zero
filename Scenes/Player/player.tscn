@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bocjrdjn6oogc"]
+[gd_scene load_steps=16 format=3 uid="uid://bocjrdjn6oogc"]
 
 [ext_resource type="Script" uid="uid://rd7eft4k6rhv" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="PackedScene" uid="uid://blofjoh2qp8rd" path="res://Scenes/UI/ui.tscn" id="2_a3d8c"]
 [ext_resource type="Script" uid="uid://byk0ihjcoiugl" path="res://Scripts/State_Machines/state_machine.gd" id="3_xpcdj"]
 [ext_resource type="Script" uid="uid://enf23qbeq8fg" path="res://Scripts/State_Machines/States/idle_player_state.gd" id="4_mtuoh"]
 [ext_resource type="Script" uid="uid://e7fqnu76d5oq" path="res://Scripts/State_Machines/States/walking_player_state.gd" id="5_htcer"]
+[ext_resource type="Script" uid="uid://26h64hbr7yi3" path="res://Scripts/State_Machines/States/sprinting_player_state.gd" id="6_dd0ac"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tugb3"]
 
@@ -134,9 +135,9 @@ tracks/0/path = NodePath("CameraController:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(2, 2, 2, 2, 2, 2, 2, 2, 2, 2),
-"points": PackedFloat32Array(-0.0011612279, -0.00016666701, -1.2314817e-08, 0.027611112, 2.0401505e-06, -0.0029251217, -0.061111115, 0.0001383767, 0, 0, -0.0022696205, -0.00016666453, -5.264058e-07, 0.04983334, 0.00015739739, -0.0016141195, -0.011367538, 1.2193188e-05, 0.03333333, -3.5754405e-05, -0.002412639, -0.02222222, 1.1307482e-05, 0.016666666, -8.4806115e-06, -0.0007440909, -0.016666671, -9.2231894e-05, 0.016666662, 9.223184e-05, -0.0012089007, -0.01111111, -5.3105457e-05, 0.016666662, 7.965817e-05, -0.0002554446, -0.00016666453, -1.4483673e-07, 0.022055557, 1.9166975e-05, -0.00057723606, -0.00016666453, -3.4401702e-07, 0.022055557, 4.5525507e-05, -2.4848821e-05, -0.005555555, -1.05282525e-05, 0, 0),
-"times": PackedFloat32Array(0.033333335, 0.13333334, 0.2, 0.33333334, 0.46666667, 0.5, 0.6333333, 0.6666667, 0.76666665, 0.8)
+"handle_modes": PackedInt32Array(2, 2, 2, 2, 2, 2, 2, 2, 2),
+"points": PackedFloat32Array(-3.3847988e-05, 0, 0, 0.022222225, -0.0014722707, -0.0088674715, -0.01666667, -0.00040089735, 0.02777778, 0.0006681622, 0.0052531287, -0.02777778, 0.00010601047, 0.02222222, -8.4808366e-05, -0.009303629, -0.02222222, -0.0001726457, 0.02222222, 0.0001726457, 0.0044353334, -0.027777782, -0.00037482305, 0.016666662, 0.00022489374, -0.008213235, -0.016666662, -7.788517e-06, 0.02222222, 1.0384691e-05, 0.0045443727, -0.02222222, 0.00027865628, 0.01111111, -0.00013932814, -0.008376795, -0.0055555506, 0.00027627207, 0.0055555603, -0.00027627253, -0.00014432083, -0.005555555, -1.05282525e-05, 0, 0),
+"times": PackedFloat32Array(0, 0.13333334, 0.3, 0.43333334, 0.6, 0.7, 0.8333333, 0.9, 1)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -146,8 +147,8 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(2, 2, 2, 2, 2, 2),
-"points": PackedFloat32Array(1.5, -0.24999996, -1.1981415e-07, 0.99495155, 4.7683716e-07, 1.5000008, -0.00016666668, -1.390775e-07, 0, 0, 1.5051862, -0.027611112, 8.9137934e-08, 0.02777778, -8.967599e-08, 1.5000179, -0.13333334, 9.858608e-05, 0.007518148, -5.5588853e-06, 1.5050628, -0.027777772, 7.6634535e-07, 0.050000004, -1.379422e-06, 1.500005, -0.050000004, 0.00011754037, 0, 0),
-"times": PackedFloat32Array(0, 0.001, 0.16666667, 0.53333336, 0.7, 1)
+"points": PackedFloat32Array(1.5, -0.24999996, -1.1981415e-07, 0.99495155, 4.7683716e-07, 1.5000008, -0.00016666668, -1.390775e-07, 0, 0, 1.5102597, -0.027611112, -8.8419154e-07, 0.061111115, 1.9569632e-06, 1.5000179, -0.061111115, -2.8462973e-05, 0.03333333, 1.5525256e-05, 1.5107216, -0.03333333, 9.1961454e-07, 0.04444444, -1.2261527e-06, 1.500005, -0.050000004, 0.00011754037, 0, 0),
+"times": PackedFloat32Array(0, 0.001, 0.16666667, 0.53333336, 0.76666665, 1)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -161,10 +162,47 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0)
 }
 
+[sub_resource type="Animation" id="Animation_dd0ac"]
+resource_name = "Sprinting"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2),
+"points": PackedFloat32Array(0, -0.24999899, -1.3107772e-05, 1, 5.2431307e-05, 1.564098e-06, -0.00016666668, -2.9933495e-05, 0, 0, 0.0104693705, -0.0165, -1.5457126e-05, 0.011111113, 1.0408841e-05, 0.0001567599, -0.00016666639, -2.1194845e-05, 0, 0, 0.009658333, 0, 0.0025433835, 0, 0, -0.0058530336, -0.027777776, -0.00026283602, 0.01111111, 0.000105134415, 0.011866156, -0.01111111, -0.00015770162, 0.02222222, 0.00031540325, 0.00033699023, -0.00016666453, 0, 0, 0, 0.012496963, -0.016666671, 4.9563365e-05, 0.01111111, -3.304223e-05, -0.00015864332, 0, 0.00040551843, 0, 0, -0.006528898, -0.01111111, 0.00050314324, 0, 0, 0.0001567599, -0.02222222, -0.00055571046, 0, 0),
+"times": PackedFloat32Array(0, 0.001, 0.099999994, 0.16666667, 0.26666668, 0.43333334, 0.5, 0.6333333, 0.73333335, 0.8, 0.8666667, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraController:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2, 2, 2, 2, 2, 2, 2),
+"points": PackedFloat32Array(1.5, -0.24999952, 2.1487187e-05, 1.0083333, -8.666515e-05, 1.5001447, -0.00016666668, -2.4120014e-05, 0, 0, 1.5412817, -0.13333333, 0.008604884, 0, 0, 1.5003203, -0.0110663185, -7.715616e-05, 0.16374654, 0.0011416674, 1.5418963, -0.102920115, 0.0046538115, 0.018803602, -0.0008502557, 1.500145, -0.02222222, -0.00015804768, 0.03333333, 0.00023707151, 1.5432136, -0.036253452, 0.005882859, 0.004486727, -0.0007280627, 1.500145, -0.0055555603, 2.928577e-06, 0.02222222, -1.1714297e-05, 1.5441792, -0.13625342, 0.0014051199, 0.0109985275, -0.000113422844, 1.5003203, -0.01111111, 0.0033951006, 0, 0),
+"times": PackedFloat32Array(0, 0.001, 0.2, 0.26666668, 0.43333334, 0.56666666, 0.73333335, 0.8, 0.93333334, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CameraController:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a3d8c"]
 _data = {
 &"Crouch": SubResource("Animation_uvnfx"),
 &"RESET": SubResource("Animation_a3d8c"),
+&"Sprinting": SubResource("Animation_dd0ac"),
 &"walking": SubResource("Animation_htcer")
 }
 
@@ -219,6 +257,10 @@ animation_player = NodePath("../../AnimationPlayer")
 
 [node name="WalkingPlayerState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("5_htcer")
+animation_player = NodePath("../../AnimationPlayer")
+
+[node name="SprintingPlayerState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("6_dd0ac")
 animation_player = NodePath("../../AnimationPlayer")
 
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
