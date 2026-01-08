@@ -1,7 +1,6 @@
 class_name WalkingPlayerState
-extends State
+extends PlayerMovementState
 
-@export var animation_player:AnimationPlayer
 @export var max_animation_speed:= 2.2
 
 func enter() -> void:
@@ -9,6 +8,9 @@ func enter() -> void:
 	Globals.player._speed = Globals.player.DEFAULT_SPEED
 
 func update(delta: float) -> void:
+	PLAYER.update_gravity(delta)
+	PLAYER.update_input()
+	PLAYER.update_velocity()
 	set_anim_speed(Globals.player.velocity.length())
 	if Globals.player.velocity.length() == 0:
 		transition.emit("IdlePlayerState")

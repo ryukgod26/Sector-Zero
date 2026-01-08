@@ -1,7 +1,6 @@
 class_name SprintingPlayerState
-extends State
+extends PlayerMovementState
 
-@export var animation_player: AnimationPlayer
 @export var max_animation_speed := 1.6
 
 func enter() -> void:
@@ -10,7 +9,6 @@ func enter() -> void:
 
 func update(delta: float) -> void:
 	set_anim_speed(Globals.player.velocity.length())
-
 
 func set_anim_speed(val):
 	var alpha = remap(val,0,Globals.player.SPRINT_SPEED,0.0,1.0)

@@ -12,6 +12,7 @@ func _ready() -> void:
 			child.transition.connect(on_child_transition)
 		else:
 			push_warning("%s is not a State Yet is a Child of State Machine." % child.name)
+	await owner.ready
 	CURRENT_STATE.enter()
 
 func _process(delta: float) -> void:
