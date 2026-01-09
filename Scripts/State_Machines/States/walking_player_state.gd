@@ -1,6 +1,9 @@
 class_name WalkingPlayerState
 extends PlayerMovementState
 
+@export var SPEED := 5.
+@export var ACCELERATION := 0.1
+@export var DEACCELERATION := 0.25
 @export var max_animation_speed:= 2.2
 
 func enter() -> void:
@@ -9,7 +12,7 @@ func enter() -> void:
 
 func update(delta: float) -> void:
 	PLAYER.update_gravity(delta)
-	PLAYER.update_input()
+	PLAYER.update_input(SPEED,ACCELERATION,DEACCELERATION)
 	PLAYER.update_velocity()
 	set_anim_speed(Globals.player.velocity.length())
 	if Globals.player.velocity.length() == 0:

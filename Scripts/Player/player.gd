@@ -119,16 +119,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		#"crouching":
 			#_speed = CROUCH_SPEED
 
-func update_input() -> void:
+func update_input(speed: float, acceleration: float, deacceleration: float) -> void:
 	var input_dir = Input.get_vector("move_left","move_right","move_forward","move_backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction:
-		velocity.x = lerp(velocity.x, direction.x * _speed,ACCELERATION)
-		velocity.z = lerp(velocity.z,direction.z * _speed, ACCELERATION)
+		velocity.x = lerp(velocity.x, direction.x * speed,acceleration)
+		velocity.z = lerp(velocity.z,direction.z * speed, acceleration)
 	else:
-		velocity.x = move_toward(velocity.x, 0 , DEACCELERATION)
-		velocity.z = move_toward(velocity.z, 0 , DEACCELERATION)
+		velocity.x = move_toward(velocity.x, 0 , deacceleration)
+		velocity.z = move_toward(velocity.z, 0 , deacceleration)
 
 func update_gravity(delta: float) -> void:
 		velocity.y -= gravity * delta
