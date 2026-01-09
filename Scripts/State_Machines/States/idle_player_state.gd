@@ -10,7 +10,10 @@ func update(delta: float) -> void:
 	PLAYER.update_input(SPEED,ACCELERATION,DEACCELERATION)
 	PLAYER.update_velocity()
 	
-	if Globals.player.velocity.length() > 0.0 and Globals.player.is_on_floor():
+	if Input.is_action_just_pressed("Crouch") and PLAYER.is_on_floor():
+		transition.emit("CrouchingPlayerState")
+	
+	if Globals.player.velocity.length() > 0.0 and PLAYER.is_on_floor():
 		transition.emit("WalkingPlayerState")
 
 func enter() -> void:

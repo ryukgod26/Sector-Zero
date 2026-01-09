@@ -9,6 +9,9 @@ extends PlayerMovementState
 func enter() -> void:
 	animation_player.play("Sprinting",0.5,1.0)
 
+func exit() -> void:
+	animation_player.speed_scale = 1
+
 func update(delta: float) -> void:
 	PLAYER.update_gravity(delta)
 	PLAYER.update_input(SPEED,ACCELERATION,DEACCELERATION)

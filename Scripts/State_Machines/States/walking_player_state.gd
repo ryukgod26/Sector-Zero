@@ -10,18 +10,28 @@ func enter() -> void:
 	animation_player.play("walking",-1,1.)
 	Globals.player._speed = Globals.player.DEFAULT_SPEED
 
+func exit() -> void:
+	animation_player.speed_scale = 1
+
 func update(delta: float) -> void:
 	PLAYER.update_gravity(delta)
 	PLAYER.update_input(SPEED,ACCELERATION,DEACCELERATION)
 	PLAYER.update_velocity()
-	set_anim_speed(Globals.player.velocity.length())
-	if Globals.player.velocity.length() == 0:
+	set_anim_speed(PLAYER.velocity.length())
+	
+	if Input.is_action_just_pressed("Crouch") and PLAYER.is_on_floor():
+		transition.emit("CrouchingPlayerState")
+	
+	if PLAYER.velocity.length() == 0:
 		transition.emit("IdlePlayerState")
+	if Input.is_action_just_pressed("Sprint") and PLAYER.is_on_floor():
+		transition.emit("SprintingPlayerState")
+
 
 func set_anim_speed(val):
 	var alpha = remap(val,0,Globals.player.DEFAULT_SPEED,0.0,1.0)
 	animation_player.speed_scale = lerp(0.0,max_animation_speed,alpha)
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Sprint") and Globals.player.is_on_floor():
-		transition.emit("SprintingPlayerState")
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("Sprint") and Globals.player.is_on_floor():
+		#transition.emit("SprintingPlayerState")
