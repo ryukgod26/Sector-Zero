@@ -11,7 +11,7 @@ var crouch_released := false
 
 func enter(previous_state) -> void:
 	if previous_state.name == "SlidingPlayerState":
-		animation_player.current_animation = "Crouching"
+		animation_player.current_animation = "Crouch`"
 		animation_player.seek(1,true)
 	else:
 		animation_player.play("Crouch",-1,CROUCH_SPEED)
