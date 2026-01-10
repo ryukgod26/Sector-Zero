@@ -6,7 +6,7 @@ extends PlayerMovementState
 @export var DEACCELERATION := 0.25
 @export var max_animation_speed:= 2.2
 
-func enter() -> void:
+func enter(_previous_state) -> void:
 	animation_player.play("walking",-1,1.)
 	Globals.player._speed = Globals.player.DEFAULT_SPEED
 

@@ -6,7 +6,7 @@ extends PlayerMovementState
 @export var DEACCELERATION := 0.25
 @export var max_animation_speed := 1.6
 
-func enter() -> void:
+func enter(_previous_state) -> void:
 	animation_player.play("Sprinting",0.5,1.0)
 
 func exit() -> void:
@@ -17,8 +17,11 @@ func update(delta: float) -> void:
 	PLAYER.update_input(SPEED,ACCELERATION,DEACCELERATION)
 	PLAYER.update_velocity()
 	
-	if Input.is_action_just_released("Sprint") and PLAYER.is_on_floor():
+	if (Input.is_action_just_released("Sprint") and PLAYER.is_on_floor()) or PLAYER.velocity.length() == 0 :
 		transition.emit("WalkingPlayerState")
+	
+	if Input.is_action_just_pressed("Crouch") and PLAYER.is_on_floor() and PLAYER.velocity.length() > 6:
+		transition.emit("SlidingPlayerState")
 	
 	set_anim_speed(Globals.player.velocity.length())
 

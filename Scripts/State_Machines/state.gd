@@ -3,7 +3,7 @@ extends Node
 
 signal transition(new_state: String)
 
-func enter() -> void:
+func enter(previous_state) -> void:
 	pass
 
 func exit() -> void:

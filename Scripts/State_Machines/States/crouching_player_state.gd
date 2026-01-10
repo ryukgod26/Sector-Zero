@@ -7,8 +7,14 @@ extends PlayerMovementState
 @export_range(1,6,0.1) var CROUCH_SPEED := 4.
 @onready var crouch_shapecast: ShapeCast3D = $"../../Crouch_Shapecast"
 
-func enter() -> void:
-	animation_player.play("Crouch",-1,CROUCH_SPEED)
+var crouch_released := false
+
+func enter(_previous_state) -> void:
+	if _previous_state.name == "SlidingPlayerState":
+		animation_player.current_animation = "Crouching"
+		animation_player.seek(1,true)
+	else:
+		animation_player.play("Crouch",-1,CROUCH_SPEED)
 
 func update(delta: float) -> void:
 	
@@ -17,6 +23,10 @@ func update(delta: float) -> void:
 	PLAYER.update_velocity()
 	
 	if Input.is_action_just_released("Crouch"):
+		uncrouch()
+	
+	elif not Input.is_action_pressed("Crouch") and not crouch_released:
+		crouch_released = true
 		uncrouch()
 		
 func uncrouch():
@@ -28,3 +38,6 @@ func uncrouch():
 	elif crouch_shapecast.is_colliding():
 		await get_tree().create_timer(0.1).timeout
 		uncrouch()
+
+func exit() -> void:
+	crouch_released = false

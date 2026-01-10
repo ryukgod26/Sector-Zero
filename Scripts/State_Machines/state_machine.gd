@@ -12,7 +12,7 @@ func _ready() -> void:
 		else:
 			push_warning("%s is not a State Yet is a Child of State Machine." % child.name)
 	await owner.ready
-	CURRENT_STATE.enter()
+	CURRENT_STATE.enter(null)
 
 func _process(delta: float) -> void:
 	CURRENT_STATE.update(delta)
@@ -28,7 +28,7 @@ func on_child_transition(new_state_name: StringName) -> void:
 	if new_state != null:
 		if new_state != CURRENT_STATE:
 			CURRENT_STATE.exit()
-			new_state.enter()
+			new_state.enter(CURRENT_STATE)
 			CURRENT_STATE = new_state
 	else:
 		push_warning("State: %s Does Not Exist." % new_state.name)

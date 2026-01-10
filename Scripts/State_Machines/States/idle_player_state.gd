@@ -16,5 +16,5 @@ func update(delta: float) -> void:
 	if Globals.player.velocity.length() > 0.0 and PLAYER.is_on_floor():
 		transition.emit("WalkingPlayerState")
 
-func enter() -> void:
+func enter(_previous_state) -> void:
 	animation_player.pause()
