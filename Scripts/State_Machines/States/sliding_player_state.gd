@@ -9,6 +9,7 @@ extends PlayerMovementState
 @export_range(1,6,0.1) var slide_anim_speed := 4.
 
 func enter(previous_state) -> void:
+	
 	set_tilt(PLAYER._current_rotation)
 	animation_player.get_animation("Sliding").track_set_key_value(5,0,PLAYER.velocity.length())
 	animation_player.speed_scale = 1.

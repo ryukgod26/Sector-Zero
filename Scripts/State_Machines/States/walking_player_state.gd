@@ -7,6 +7,8 @@ extends PlayerMovementState
 @export var max_animation_speed:= 2.2
 
 func enter(_previous_state) -> void:
+	if animation_player.is_playing() and animation_player.current_animation == "JumpEnd":
+		await animation_player.animation_finished
 	animation_player.play("walking",-1,1.)
 	Globals.player._speed = Globals.player.DEFAULT_SPEED
 
@@ -27,8 +29,12 @@ func update(delta: float) -> void:
 	
 	if PLAYER.velocity.length() == 0:
 		transition.emit("IdlePlayerState")
+		
 	if Input.is_action_just_pressed("Sprint") and PLAYER.is_on_floor():
 		transition.emit("SprintingPlayerState")
+	
+	if PLAYER.velocity.y < -3 and not PLAYER.is_on_floor():
+		transition.emit("FallingPlayerState")
 
 
 func set_anim_speed(val):

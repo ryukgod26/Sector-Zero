@@ -140,3 +140,12 @@ mesh = SubResource("BoxMesh_pugea")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Platforms/MeshInstance3D2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_pugea")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Objects/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 0.37913418, 0, 0, 0, 1, -4.847, 3.5, -8.61)
+mesh = SubResource("BoxMesh_pugea")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Objects/Platforms/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Platforms/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_pugea")

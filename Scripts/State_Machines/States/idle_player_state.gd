@@ -18,6 +18,9 @@ func update(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("Jump") and PLAYER.is_on_floor():
 		transition.emit("JumpingPlayerState")
+	
+	if PLAYER.velocity.y < -3 and not PLAYER.is_on_floor():
+		transition.emit("FallingPlayerState")
 
 func enter(_previous_state) -> void:
 	if animation_player.is_playing() and animation_player.current_animation == "JumpEnd":
