@@ -20,4 +20,6 @@ func update(delta: float) -> void:
 		transition.emit("JumpingPlayerState")
 
 func enter(_previous_state) -> void:
+	if animation_player.is_playing() and animation_player.current_animation == "JumpEnd":
+		await animation_player.animation_finished
 	animation_player.pause()

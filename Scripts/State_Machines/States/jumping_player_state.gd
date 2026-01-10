@@ -10,7 +10,7 @@ extends PlayerMovementState
 
 func enter(_previous_state) -> void:
 	PLAYER.velocity.y += jump_velocity
-	animation_player.pause()
+	animation_player.play("JumpStart")
 
 func update(delta: float) -> void:
 	PLAYER.update_gravity(delta)
@@ -18,14 +18,15 @@ func update(delta: float) -> void:
 	PLAYER.update_velocity()
 	
 	if PLAYER.is_on_floor():
+		animation_player.play("JumpEnd")
 		transition.emit("IdlePlayerState")
 	
 	if Input.is_action_just_pressed("Jump") and not PLAYER.is_on_floor():
 		transition.emit("DoubleJumpingPlayerState")
 	
 	if Input.is_action_just_released("Jump"):
-		if PLAYER.velocity.y > 0:
-			PLAYER.velocity.y = PLAYER.velocity.y / 2
+		if PLAYER.velocity.y > 0.:
+			PLAYER.velocity.y = PLAYER.velocity.y / 2.
 
 func exit() -> void:
 	pass

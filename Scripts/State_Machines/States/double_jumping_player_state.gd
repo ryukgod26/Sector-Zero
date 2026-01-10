@@ -18,4 +18,9 @@ func update(delta: float) -> void:
 	PLAYER.update_velocity()
 	
 	if PLAYER.is_on_floor():
+		animation_player.play("JumpEnd")
 		transition.emit("IdlePlayerState")
+		
+	if Input.is_action_just_released("Jump"):
+		if PLAYER.velocity.y > 0.:
+			PLAYER.velocity.y = PLAYER.velocity.y / 2.
