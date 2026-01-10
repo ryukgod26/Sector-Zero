@@ -9,8 +9,8 @@ extends PlayerMovementState
 
 var crouch_released := false
 
-func enter(_previous_state) -> void:
-	if _previous_state.name == "SlidingPlayerState":
+func enter(previous_state) -> void:
+	if previous_state.name == "SlidingPlayerState":
 		animation_player.current_animation = "Crouching"
 		animation_player.seek(1,true)
 	else:

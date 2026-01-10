@@ -17,6 +17,9 @@ func enter(previous_state) -> void:
 func update(delta: float) -> void:
 	PLAYER.update_gravity(delta)
 	PLAYER.update_velocity()
+	
+	if Input.is_action_just_pressed("Jump") and PLAYER.is_on_floor():
+		transition.emit("JumpingPlayerState")
 
 func set_tilt(player_rotation) -> void:
 	var tilt = Vector3.ZERO

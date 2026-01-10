@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bocjrdjn6oogc"]
+[gd_scene load_steps=21 format=3 uid="uid://bocjrdjn6oogc"]
 
 [ext_resource type="Script" uid="uid://rd7eft4k6rhv" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="PackedScene" uid="uid://blofjoh2qp8rd" path="res://Scenes/UI/ui.tscn" id="2_a3d8c"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://26h64hbr7yi3" path="res://Scripts/State_Machines/States/sprinting_player_state.gd" id="6_dd0ac"]
 [ext_resource type="Script" uid="uid://ddurml200phr2" path="res://Scripts/State_Machines/States/crouching_player_state.gd" id="7_0u5uq"]
 [ext_resource type="Script" uid="uid://b8ab5fgcewr3s" path="res://Scripts/State_Machines/States/sliding_player_state.gd" id="8_jlvik"]
+[ext_resource type="Script" uid="uid://d3k0pmpnb5am3" path="res://Scripts/State_Machines/States/jumping_player_state.gd" id="9_gk6dx"]
+[ext_resource type="Script" uid="uid://c5ope8i0fc4r6" path="res://Scripts/State_Machines/States/double_jumping_player_state.gd" id="10_jhyir"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tugb3"]
 
@@ -380,5 +382,11 @@ script = ExtResource("7_0u5uq")
 
 [node name="SlidingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("8_jlvik")
+
+[node name="JumpingPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("9_gk6dx")
+
+[node name="DoubleJumpingPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("10_jhyir")
 
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
