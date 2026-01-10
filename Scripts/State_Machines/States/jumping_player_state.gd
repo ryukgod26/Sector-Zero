@@ -22,6 +22,10 @@ func update(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("Jump") and not PLAYER.is_on_floor():
 		transition.emit("DoubleJumpingPlayerState")
+	
+	if Input.is_action_just_released("Jump"):
+		if PLAYER.velocity.y > 0:
+			PLAYER.velocity.y = PLAYER.velocity.y / 2
 
 func exit() -> void:
 	pass
