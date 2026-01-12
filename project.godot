@@ -76,10 +76,12 @@ Sprint={
 
 [layer_names]
 
+3d_render/layer_1="Default"
+3d_render/layer_2="Weapons"
 3d_physics/layer_1="Objects"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Enemy"
-3d_physics/layer_4="Projectile"
+3d_physics/layer_4="Weapons"
 
 [physics]
 
