@@ -7,6 +7,9 @@
 script = ExtResource("2_k6oul")
 name = &"Crowbar"
 position = Vector3(-0.458871, -0.1566838, -0.42642662)
+sway_amount_position = 0.2
+idle_sway_adjustment = 15.0
+random_sway_amount = 7.0
 mesh = ExtResource("1_oblqv")
 shadow = true
 metadata/_custom_type_script = "uid://ds3143bu6cw4x"

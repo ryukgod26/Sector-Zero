@@ -5,6 +5,10 @@ extends PlayerMovementState
 @export var ACCELERATION := 0.1
 @export var DEACCELERATION := 0.25
 @export_range(1,6,0.1) var CROUCH_SPEED := 4.
+@export var WEAPON_BOB_SPD :float = 4
+@export var WEAPON_BOB_H_MOV: float = 1.5
+@export var WEAPON_BOB_V_MOV: float = 0.3
+
 @onready var crouch_shapecast: ShapeCast3D = $"../../Crouch_Shapecast"
 
 var crouch_released := false
@@ -23,6 +27,7 @@ func update(delta: float) -> void:
 	PLAYER.update_velocity()
 	
 	weapon.sway_weapon(delta,false)
+	weapon.weapon_bob(delta,WEAPON_BOB_SPD,WEAPON_BOB_H_MOV,WEAPON_BOB_V_MOV)
 
 	if Input.is_action_just_released("Crouch"):
 		uncrouch()

@@ -422,7 +422,7 @@ ambient_mode = 0
 [node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D"]
 
 [node name="Weapon" parent="CameraController/Camera3D/WeaponRig" instance=ExtResource("3_7g0yx")]
-transform = Transform3D(0.9999934, 1.3117031e-05, 0.0036217205, 0, 0.9999934, -0.003621744, -0.0036217442, 0.0036217202, 0.9999868, 0.4286962, -0.15741302, -0.42642662)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.009722894, 0.008738783, -0.42642662)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

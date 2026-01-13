@@ -5,6 +5,9 @@ extends PlayerMovementState
 @export var ACCELERATION := 0.1
 @export var DEACCELERATION := 0.25
 @export var max_animation_speed:= 2.2
+@export var WEAPON_BOB_SPD :float = 5.5
+@export var WEAPON_BOB_H_MOV: float = 2.5
+@export var WEAPON_BOB_V_MOV: float = 0.7
 
 func enter(_previous_state) -> void:
 	if animation_player.is_playing() and animation_player.current_animation == "JumpEnd":
@@ -22,6 +25,8 @@ func update(delta: float) -> void:
 	set_anim_speed(PLAYER.velocity.length())
 	
 	weapon.sway_weapon(delta, false)
+	weapon.weapon_bob(delta,WEAPON_BOB_SPD,WEAPON_BOB_H_MOV,WEAPON_BOB_V_MOV)
+
 	
 	if Input.is_action_just_pressed("Crouch") and PLAYER.is_on_floor():
 		transition.emit("CrouchingPlayerState")
