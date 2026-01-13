@@ -12,6 +12,7 @@ extends CharacterBody3D
 @export var TILT_UPPER_LIMIT := deg_to_rad(90)
 @export var CAMERA_CONTROLLER: Camera3D
 @export var MOUSE_SENSTIVITY: float = 0.5
+@export var WEAPON_CONTROLLER: WeaponController
 #@export var TOGGLE_CROUCH := true
 @export_range(5,10,0.1) var CROUCH_ANIM_SPEED := 7.0
 
@@ -42,9 +43,6 @@ func _physics_process(delta: float) -> void:
 	_update_camera(delta)
 	#if Input.is_action_just_pressed("Jump") and is_on_floor() and not is_crouching:
 		#velocity.y += JUMP_VELOCITY
-	
-	
-	 
 
 #func _input(event: InputEvent) -> void:
 	#if event.is_action_pressed("Crouch") and is_on_floor() and TOGGLE_CROUCH:

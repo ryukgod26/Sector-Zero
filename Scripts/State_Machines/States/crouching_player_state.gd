@@ -11,7 +11,7 @@ var crouch_released := false
 
 func enter(previous_state) -> void:
 	if previous_state.name == "SlidingPlayerState":
-		animation_player.current_animation = "Crouch`"
+		animation_player.current_animation = "Crouch"
 		animation_player.seek(1,true)
 	else:
 		animation_player.play("Crouch",-1,CROUCH_SPEED)
@@ -22,6 +22,8 @@ func update(delta: float) -> void:
 	PLAYER.update_input(SPEED,ACCELERATION,DEACCELERATION)
 	PLAYER.update_velocity()
 	
+	weapon.sway_weapon(delta,false)
+
 	if Input.is_action_just_released("Crouch"):
 		uncrouch()
 	

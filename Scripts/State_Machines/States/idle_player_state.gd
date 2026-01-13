@@ -10,6 +10,8 @@ func update(delta: float) -> void:
 	PLAYER.update_input(SPEED,ACCELERATION,DEACCELERATION)
 	PLAYER.update_velocity()
 	
+	weapon.sway_weapon(delta,true)
+	
 	if Input.is_action_just_pressed("Crouch") and PLAYER.is_on_floor():
 		transition.emit("CrouchingPlayerState")
 	

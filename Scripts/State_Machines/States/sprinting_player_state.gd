@@ -19,6 +19,8 @@ func update(delta: float) -> void:
 	PLAYER.update_input(SPEED,ACCELERATION,DEACCELERATION)
 	PLAYER.update_velocity()
 	
+	weapon.sway_weapon(delta,false)
+	
 	if (Input.is_action_just_released("Sprint") and PLAYER.is_on_floor()) or PLAYER.velocity.length() == 0 :
 		transition.emit("WalkingPlayerState")
 	

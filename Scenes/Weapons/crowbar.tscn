@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bxiaqb4ecrsb8"]
+[gd_scene load_steps=14 format=4 uid="uid://bxiaqb4ecrsb8"]
 
 [ext_resource type="Script" uid="uid://dm0mlc3c28xci" path="res://Scripts/Weapons/init_weapon.gd" id="1_dc26b"]
 [ext_resource type="Texture2D" uid="uid://cmlinridggh1i" path="res://assets/Weapons/crowbar1/crowbar_test_0.jpg" id="1_lq73j"]
@@ -6,7 +6,10 @@
 [ext_resource type="Resource" uid="uid://c5cuvuogr2a6q" path="res://assets/Weapons/crowbar1/crowbar.tres" id="2_rxohx"]
 [ext_resource type="Texture2D" uid="uid://dpn4vfv8gpcaq" path="res://assets/Weapons/crowbar1/crowbar_test_2.png" id="3_rxohx"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dc26b"]
+
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dc26b"]
+noise = SubResource("FastNoiseLite_dc26b")
 
 [sub_resource type="Shader" id="Shader_1b8s6"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.5.1.stable's StandardMaterial3D.
