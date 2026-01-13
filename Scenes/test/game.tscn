@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cff7enaplcmu0"]
+[gd_scene load_steps=18 format=3 uid="uid://cff7enaplcmu0"]
 
 [ext_resource type="PackedScene" uid="uid://cmtegt1anmu5w" path="res://Scenes/test/WE_Test.tscn" id="1_dhce4"]
 [ext_resource type="PackedScene" uid="uid://bocjrdjn6oogc" path="res://Scenes/Player/player.tscn" id="2_bkk7d"]
@@ -34,6 +34,14 @@ data = PackedVector3Array(-3, 0.25, 2, 3, 0.25, 2, -3, -0.25, 2, 3, 0.25, 2, 3, 
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pugea"]
 data = PackedVector3Array(-3, 0.25, 2, 3, 0.25, 2, -3, -0.25, 2, 3, 0.25, 2, 3, -0.25, 2, -3, -0.25, 2, 3, 0.25, -2, -3, 0.25, -2, 3, -0.25, -2, -3, 0.25, -2, -3, -0.25, -2, 3, -0.25, -2, 3, 0.25, 2, 3, 0.25, -2, 3, -0.25, 2, 3, 0.25, -2, 3, -0.25, -2, 3, -0.25, 2, -3, 0.25, -2, -3, 0.25, 2, -3, -0.25, -2, -3, 0.25, 2, -3, -0.25, 2, -3, -0.25, -2, 3, 0.25, 2, -3, 0.25, 2, 3, 0.25, -2, -3, 0.25, 2, -3, 0.25, -2, 3, 0.25, -2, -3, -0.25, 2, 3, -0.25, 2, -3, -0.25, -2, 3, -0.25, 2, 3, -0.25, -2, -3, -0.25, -2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pugea"]
+albedo_color = Color(0.427493, 0.42749307, 0.42749307, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m7dh0"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_m7dh0"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [node name="Game" type="Node3D"]
 
@@ -166,3 +174,13 @@ mesh = SubResource("BoxMesh_pugea")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Platforms/MeshInstance3D5/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_pugea")
+
+[node name="Wall" type="MeshInstance3D" parent="Objects"]
+transform = Transform3D(30.51493, 0, 0, 0, 2.2859416, 0, 0, 0, 1, 2.4515448, 1.1966566, 9.12986)
+material_override = SubResource("StandardMaterial3D_pugea")
+mesh = SubResource("BoxMesh_m7dh0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Objects/Wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Wall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_m7dh0")

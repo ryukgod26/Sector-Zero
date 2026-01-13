@@ -16,3 +16,4 @@ sky = SubResource("Sky_6i45b")
 environment = SubResource("Environment_rsfmm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+shadow_enabled = true

@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://bxiaqb4ecrsb8"]
+[gd_scene load_steps=12 format=4 uid="uid://bxiaqb4ecrsb8"]
 
+[ext_resource type="Script" uid="uid://dm0mlc3c28xci" path="res://Scripts/Weapons/init_weapon.gd" id="1_dc26b"]
 [ext_resource type="Texture2D" uid="uid://cmlinridggh1i" path="res://assets/Weapons/crowbar1/crowbar_test_0.jpg" id="1_lq73j"]
 [ext_resource type="Texture2D" uid="uid://cncehgf0bup11" path="res://assets/Weapons/crowbar1/crowbar_test_1.png" id="2_dc26b"]
+[ext_resource type="Resource" uid="uid://c5cuvuogr2a6q" path="res://assets/Weapons/crowbar1/crowbar.tres" id="2_rxohx"]
 [ext_resource type="Texture2D" uid="uid://dpn4vfv8gpcaq" path="res://assets/Weapons/crowbar1/crowbar_test_2.png" id="3_rxohx"]
 
 [sub_resource type="Shader" id="Shader_1b8s6"]
@@ -168,11 +170,17 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nvr88")
 
 [node name="Crowbar" type="Node3D"]
+script = ExtResource("1_dc26b")
+weapon_type = ExtResource("2_rxohx")
 
 [node name="WeaponMesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, 0, 0, 0)
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_dc26b")
 
 [node name="WeaponShadow" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, 1.509958e-07, 6.600236e-15, 0, -4.371139e-08, 1, 1.509958e-07, 1, 4.371139e-08, 0, 0, 0)
 cast_shadow = 3
 mesh = SubResource("ArrayMesh_rxohx")
