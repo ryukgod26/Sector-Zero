@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Weapons" load_steps=3 format=3 uid="uid://b4creqg7vnv4e"]
+[gd_resource type="Resource" script_class="Weapons" load_steps=4 format=3 uid="uid://b4creqg7vnv4e"]
 
 [ext_resource type="ArrayMesh" uid="uid://dh6o42lg1jvr6" path="res://assets/Weapons/crowbar1/crowbar.res" id="1_oblqv"]
 [ext_resource type="Script" uid="uid://ds3143bu6cw4x" path="res://Scripts/Weapons/weapons.gd" id="2_k6oul"]
+[ext_resource type="PackedScene" uid="uid://cyjwdbnwf6y3n" path="res://Scenes/Decales/bullet_decal.tscn" id="3_k6oul"]
 
 [resource]
 script = ExtResource("2_k6oul")
@@ -12,4 +13,5 @@ idle_sway_adjustment = 15.0
 random_sway_amount = 7.0
 mesh = ExtResource("1_oblqv")
 shadow = true
+weapon_decal = ExtResource("3_k6oul")
 metadata/_custom_type_script = "uid://ds3143bu6cw4x"

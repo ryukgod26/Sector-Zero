@@ -85,3 +85,24 @@ func weapon_bob(delta, bob_speed: float, hbob_amount: float, vbob_amount: float)
 	
 #func _physics_process(delta: float) -> void:
 	#weapon_bob(delta,5,0.02,0.01)
+
+func _attack() -> void:
+	var camera = Globals.player.CAMERA_CONTROLLER
+	var space_state = camera.get_world_3d().direct_space_state
+	var screen_center = get_viewport().size / 2
+	var origin = camera.project_ray_origin(screen_center)
+	var end = origin + camera.project_ray_normal(screen_center) * 1000
+	var query = PhysicsRayQueryParameters3D.create(origin,end)
+	query.collide_with_bodies = true
+	var result = space_state.intersect_ray(query)
+	print(result)
+	if result:
+		apply_decal(result.get("position"))
+
+func apply_decal(pos: Vector3) -> void:
+	var decal = weapon_type.weapon_decal.instantiate()
+	get_tree().root.add_child(decal)
+	decal.global_position = pos
+	await get_tree().create_timer(5).timeout
+	decal.queue_free()
+	
