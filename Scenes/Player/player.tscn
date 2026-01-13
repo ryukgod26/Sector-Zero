@@ -421,7 +421,7 @@ ambient_mode = 0
 [node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D"]
 
 [node name="Crowbar" parent="CameraController/Camera3D/WeaponRig" instance=ExtResource("3_7g0yx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42769217, -0.1566838, -0.42642662)
+transform = Transform3D(0.9999785, 4.2965432e-05, 0.0065546613, 0, 0.9999785, -0.006554802, -0.006554802, 0.0065546613, 0.999957, 0.42856264, -0.15973946, -0.42642662)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
