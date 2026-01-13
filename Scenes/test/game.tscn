@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bocjrdjn6oogc" path="res://Scenes/Player/player.tscn" id="2_bkk7d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mrt3l"]
-albedo_color = Color(1.0829419e-07, 0.21917027, 0.219479, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bkk7d"]
 

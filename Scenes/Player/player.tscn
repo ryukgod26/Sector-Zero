@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://bocjrdjn6oogc"]
+[gd_scene load_steps=26 format=3 uid="uid://bocjrdjn6oogc"]
 
 [ext_resource type="Script" uid="uid://rd7eft4k6rhv" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="PackedScene" uid="uid://blofjoh2qp8rd" path="res://Scenes/UI/ui.tscn" id="2_a3d8c"]
-[ext_resource type="PackedScene" uid="uid://b6s8ugmxcuj3r" path="res://Scenes/Weapons/crowbar.tscn" id="3_7g0yx"]
+[ext_resource type="PackedScene" uid="uid://bgnllg2y21nbw" path="res://Scenes/Weapons/test.tscn" id="2_oikmp"]
+[ext_resource type="PackedScene" uid="uid://dsl6qxrxd5e23" path="res://assets/Weapons/crowbar_test.glb" id="3_06tpx"]
 [ext_resource type="Script" uid="uid://byk0ihjcoiugl" path="res://Scripts/State_Machines/state_machine.gd" id="3_xpcdj"]
 [ext_resource type="Script" uid="uid://enf23qbeq8fg" path="res://Scripts/State_Machines/States/idle_player_state.gd" id="4_mtuoh"]
 [ext_resource type="Script" uid="uid://e7fqnu76d5oq" path="res://Scripts/State_Machines/States/walking_player_state.gd" id="5_htcer"]
@@ -420,8 +421,12 @@ ambient_mode = 0
 
 [node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D"]
 
-[node name="Crowbar" parent="CameraController/Camera3D/WeaponRig" instance=ExtResource("3_7g0yx")]
-transform = Transform3D(-1, -8.742278e-08, -3.821371e-15, 0, -4.371139e-08, 1, -8.742278e-08, 1, 4.371139e-08, 0.34487385, -0.21632123, -0.61250365)
+[node name="test" parent="CameraController/Camera3D/WeaponRig" instance=ExtResource("2_oikmp")]
+transform = Transform3D(-1, -8.742278e-08, -3.821371e-15, 0, -4.371139e-08, 1, -8.742278e-08, 1, 4.371139e-08, 0.48952043, 0, -0.7383635)
+visible = false
+
+[node name="Sketchfab_Scene" parent="CameraController/Camera3D/WeaponRig" instance=ExtResource("3_06tpx")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.48952043, 0, -0.7383635)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
