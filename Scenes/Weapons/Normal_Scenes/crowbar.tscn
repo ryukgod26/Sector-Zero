@@ -1,5 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxiaqb4ecrsb8"]
+[gd_scene load_steps=2 format=3 uid="uid://o5srd6i2akxp"]
 
-[ext_resource type="PackedScene" uid="uid://enj40xfpq8ys" path="res://assets/Weapons/crowbar/crowbar.glb" id="1_spogb"]
+[ext_resource type="PackedScene" uid="uid://dsl6qxrxd5e23" path="res://assets/Weapons/crowbar1/crowbar_test.glb" id="1_g1ujh"]
 
-[node name="crowbar" instance=ExtResource("1_spogb")]
+[node name="Crowbar" instance=ExtResource("1_g1ujh")]

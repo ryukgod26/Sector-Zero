@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgnllg2y21nbw"]
-
-[ext_resource type="ArrayMesh" uid="uid://b1ua7amtfhqke" path="res://assets/Weapons/crowbar/crowbar.res" id="1_slhnd"]
-
-[node name="test" type="Node3D"]
-
-[node name="Weapon" type="MeshInstance3D" parent="."]
-mesh = ExtResource("1_slhnd")

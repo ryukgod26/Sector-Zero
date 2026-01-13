@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oqeqhqxs4nyy"
-path.s3tc="res://.godot/imported/crowbar_0.jpg-4c22ef25395eae5840b58a5e6b04a27f.s3tc.ctex"
+uid="uid://cncehgf0bup11"
+path.s3tc="res://.godot/imported/crowbar_test_1.png-8b359d3107981924d0a3309cf1231e22.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "b8988647509f8323479533858ee507de"
+"md5": "d6c756b80639b9f86458ba650c7503e7"
 }
 
 [deps]
 
-source_file="res://assets/Weapons/crowbar/crowbar_0.jpg"
-dest_files=["res://.godot/imported/crowbar_0.jpg-4c22ef25395eae5840b58a5e6b04a27f.s3tc.ctex"]
+source_file="res://assets/Weapons/crowbar1/crowbar_test_1.png"
+dest_files=["res://.godot/imported/crowbar_test_1.png-8b359d3107981924d0a3309cf1231e22.s3tc.ctex"]
 
 [params]
 
@@ -29,8 +29,8 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=8
+roughness/src_normal="res://assets/Weapons/crowbar_test_2.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
