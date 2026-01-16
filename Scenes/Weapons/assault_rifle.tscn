@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://wm2ufg26wgvo"]
+
+[ext_resource type="Script" uid="uid://dm0mlc3c28xci" path="res://Scripts/Weapons/init_weapon.gd" id="1_1mtf5"]
+[ext_resource type="ArrayMesh" uid="uid://chxexg7npofqu" path="res://assets/Weapons/AssaultRifle/assault_rifle.res" id="1_8stto"]
+[ext_resource type="Resource" uid="uid://dcmtv32d5gctf" path="res://assets/Weapons/AssaultRifle/assault_rifle.tres" id="2_jm7vw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8fsu4"]
+
+[node name="AssaultRifle" type="Node3D"]
+script = ExtResource("1_1mtf5")
+weapon_type = ExtResource("2_jm7vw")
+sway_noise = SubResource("NoiseTexture2D_8fsu4")
+metadata/_custom_type_script = "uid://dm0mlc3c28xci"
+
+[node name="WeaponMesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+cast_shadow = 0
+mesh = ExtResource("1_8stto")
+
+[node name="WeaponShadow" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+cast_shadow = 3
+mesh = ExtResource("1_8stto")

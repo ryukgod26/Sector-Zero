@@ -1,9 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://bocjrdjn6oogc"]
+[gd_scene load_steps=29 format=3 uid="uid://bocjrdjn6oogc"]
 
 [ext_resource type="Script" uid="uid://rd7eft4k6rhv" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
+[ext_resource type="PackedScene" uid="uid://dgmayja852ego" path="res://assets/Weapons/AssaultRifle/Assault Rifle.glb" id="2_06tpx"]
 [ext_resource type="PackedScene" uid="uid://blofjoh2qp8rd" path="res://Scenes/UI/ui.tscn" id="2_a3d8c"]
-[ext_resource type="PackedScene" uid="uid://bxiaqb4ecrsb8" path="res://Scenes/Weapons/crowbar.tscn" id="3_7g0yx"]
+[ext_resource type="Script" uid="uid://dm0mlc3c28xci" path="res://Scripts/Weapons/init_weapon.gd" id="3_7g0yx"]
 [ext_resource type="Script" uid="uid://byk0ihjcoiugl" path="res://Scripts/State_Machines/state_machine.gd" id="3_xpcdj"]
+[ext_resource type="Resource" uid="uid://dcmtv32d5gctf" path="res://assets/Weapons/AssaultRifle/assault_rifle.tres" id="4_7g0yx"]
 [ext_resource type="Script" uid="uid://enf23qbeq8fg" path="res://Scripts/State_Machines/States/idle_player_state.gd" id="4_mtuoh"]
 [ext_resource type="Script" uid="uid://e7fqnu76d5oq" path="res://Scripts/State_Machines/States/walking_player_state.gd" id="5_htcer"]
 [ext_resource type="Script" uid="uid://26h64hbr7yi3" path="res://Scripts/State_Machines/States/sprinting_player_state.gd" id="6_dd0ac"]
@@ -19,6 +21,11 @@
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_uvnfx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7g0yx"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dey5f"]
+noise = SubResource("FastNoiseLite_7g0yx")
 
 [sub_resource type="Animation" id="Animation_uvnfx"]
 resource_name = "Crouch"
@@ -399,7 +406,7 @@ _data = {
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER", "WEAPON_CONTROLLER")]
 script = ExtResource("1_a3d8c")
 CAMERA_CONTROLLER = NodePath("CameraController/Camera3D")
-WEAPON_CONTROLLER = NodePath("CameraController/Camera3D/WeaponRig/Weapon")
+WEAPON_CONTROLLER = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -421,8 +428,11 @@ ambient_mode = 0
 
 [node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D"]
 
-[node name="Weapon" parent="CameraController/Camera3D/WeaponRig" instance=ExtResource("3_7g0yx")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.009722894, 0.008738783, -0.42642662)
+[node name="Weapon" parent="CameraController/Camera3D/WeaponRig" instance=ExtResource("2_06tpx")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.7371235, -0.3468461, -1.2608507)
+script = ExtResource("3_7g0yx")
+weapon_type = ExtResource("4_7g0yx")
+sway_noise = SubResource("NoiseTexture2D_dey5f")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

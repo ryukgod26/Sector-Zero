@@ -105,4 +105,3 @@ func apply_decal(pos: Vector3) -> void:
 	decal.global_position = pos
 	await get_tree().create_timer(5).timeout
 	decal.queue_free()
-	

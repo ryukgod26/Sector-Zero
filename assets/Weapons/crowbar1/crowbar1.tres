@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Weapons" load_steps=4 format=3 uid="uid://b4creqg7vnv4e"]
 
-[ext_resource type="ArrayMesh" uid="uid://dh6o42lg1jvr6" path="res://assets/Weapons/crowbar1/crowbar.res" id="1_oblqv"]
+[ext_resource type="ArrayMesh" uid="uid://cer712v2tlgk4" path="res://assets/Weapons/crowbar1/crowbar.res" id="1_oblqv"]
 [ext_resource type="Script" uid="uid://ds3143bu6cw4x" path="res://Scripts/Weapons/weapons.gd" id="2_k6oul"]
 [ext_resource type="PackedScene" uid="uid://cyjwdbnwf6y3n" path="res://Scenes/Decales/bullet_decal.tscn" id="3_k6oul"]
 
