@@ -3,5 +3,5 @@
 [ext_resource type="Texture2D" uid="uid://dce2ey6o5cgal" path="res://assets/Weapons/Decales/Bullet_Decale/bullet_hole.png" id="1_clwru"]
 
 [node name="BulletDecal" type="Decal"]
-size = Vector3(0.3, 0.3, 0.3)
+size = Vector3(0.2, 0.2, 0.2)
 texture_albedo = ExtResource("1_clwru")

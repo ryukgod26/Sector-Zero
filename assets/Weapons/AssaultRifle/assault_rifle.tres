@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="Weapons" load_steps=4 format=3 uid="uid://dcmtv32d5gctf"]
 
 [ext_resource type="Script" uid="uid://ds3143bu6cw4x" path="res://Scripts/Weapons/weapons.gd" id="1_mqlme"]
-[ext_resource type="ArrayMesh" uid="uid://chxexg7npofqu" path="res://assets/Weapons/AssaultRifle/assault_rifle.res" id="1_xjqmc"]
+[ext_resource type="ArrayMesh" uid="uid://b15gusbnr6grx" path="res://assets/Weapons/AssaultRifle/assault_rifle.res" id="1_xjqmc"]
 [ext_resource type="PackedScene" uid="uid://cyjwdbnwf6y3n" path="res://Scenes/Decales/bullet_decal.tscn" id="3_gnkqf"]
 
 [resource]
 script = ExtResource("1_mqlme")
 name = &"AssaultRifle"
+position = Vector3(0.98672247, -0.67353225, -2.5442967)
 mesh = ExtResource("1_xjqmc")
 shadow = true
 weapon_decal = ExtResource("3_gnkqf")
