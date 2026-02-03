@@ -45,7 +45,6 @@ func load_weapon() -> void:
 	random_sway_amount = weapon_type.random_sway_amount
 
 func sway_weapon(delta, isIdle: bool) -> void:
-	
 	mouse_movement = mouse_movement.clamp(weapon_type.sway_min,weapon_type.sway_max)
 	
 	if isIdle:
@@ -97,11 +96,14 @@ func _attack() -> void:
 	var result = space_state.intersect_ray(query)
 	print(result)
 	if result:
-		apply_decal(result.get("position"))
+		apply_decal(result.get("position"), result.get("normal"))
 
-func apply_decal(pos: Vector3) -> void:
+func apply_decal(pos: Vector3, normal: Vector3) -> void:
 	var decal = weapon_type.weapon_decal.instantiate()
 	get_tree().root.add_child(decal)
 	decal.global_position = pos
+	decal.look_at(decal.global_transform.origin + normal, Vector3.UP)
+	if normal != Vector3.UP and normal != Vector3.DOWN:
+		decal.rotate_object_local(Vector3(1,0,0), 90)
 	await get_tree().create_timer(5).timeout
 	decal.queue_free()
