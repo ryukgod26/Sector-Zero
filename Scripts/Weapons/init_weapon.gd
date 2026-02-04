@@ -102,8 +102,19 @@ func apply_decal(pos: Vector3, normal: Vector3) -> void:
 	var decal = weapon_type.weapon_decal.instantiate()
 	get_tree().root.add_child(decal)
 	decal.global_position = pos
-	decal.look_at(decal.global_transform.origin + normal, Vector3.UP)
-	if normal != Vector3.UP and normal != Vector3.DOWN:
-		decal.rotate_object_local(Vector3(1,0,0), 90)
+	
+	# Align the decal's Y axis with the surface normal
+	decal.global_transform.basis = Basis()
+	var up = normal
+	var right = up.cross(Vector3.FORWARD)
+	if right.length_squared() < 0.01:  # Handle edge case when normal is parallel to forward
+		right = up.cross(Vector3.RIGHT)
+	right = right.normalized()
+	var forward = right.cross(up)
+	
+	decal.global_transform.basis.x = right
+	decal.global_transform.basis.y = up
+	decal.global_transform.basis.z = forward
+	
 	await get_tree().create_timer(5).timeout
 	decal.queue_free()
