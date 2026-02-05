@@ -116,5 +116,8 @@ func apply_decal(pos: Vector3, normal: Vector3) -> void:
 	decal.global_transform.basis.y = up
 	decal.global_transform.basis.z = forward
 	
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(2).timeout
+	var fade_tween = create_tween()
+	fade_tween.tween_property(decal,"modulate:a",0,1.5)
+	await get_tree().create_timer(1.5).timeout
 	decal.queue_free()
