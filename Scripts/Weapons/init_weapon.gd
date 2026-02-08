@@ -13,6 +13,8 @@ extends Node3D
 @onready var weapon_mesh: MeshInstance3D = %WeaponMesh
 @onready var weapon_shadow: MeshInstance3D = %WeaponShadow
 
+signal weapon_fired
+
 var mouse_movement: Vector2
 var random_sway_x
 var random_sway_y
@@ -86,6 +88,7 @@ func weapon_bob(delta, bob_speed: float, hbob_amount: float, vbob_amount: float)
 	#weapon_bob(delta,5,0.02,0.01)
 
 func _attack() -> void:
+	weapon_fired.emit()
 	var camera = Globals.player.CAMERA_CONTROLLER
 	var space_state = camera.get_world_3d().direct_space_state
 	var screen_center = get_viewport().size / 2
@@ -94,7 +97,7 @@ func _attack() -> void:
 	var query = PhysicsRayQueryParameters3D.create(origin,end)
 	query.collide_with_bodies = true
 	var result = space_state.intersect_ray(query)
-	print(result)
+	#print(result)
 	if result:
 		apply_decal(result.get("position"), result.get("normal"))
 
@@ -102,19 +105,8 @@ func apply_decal(pos: Vector3, normal: Vector3) -> void:
 	var decal = weapon_type.weapon_decal.instantiate()
 	get_tree().root.add_child(decal)
 	decal.global_position = pos
-	
-	# Align the decal's Y axis with the surface normal
-	decal.global_transform.basis = Basis()
-	var up = normal
-	var right = up.cross(Vector3.FORWARD)
-	if right.length_squared() < 0.01:  # Handle edge case when normal is parallel to forward
-		right = up.cross(Vector3.RIGHT)
-	right = right.normalized()
-	var forward = right.cross(up)
-	
-	decal.global_transform.basis.x = right
-	decal.global_transform.basis.y = up
-	decal.global_transform.basis.z = forward
+	decal.global_transform = decal.global_transform.looking_at(pos + normal, Vector3.UP)
+	decal.rotate_object_local(Vector3.RIGHT, -PI/2)  # Rotate -90 degrees on X
 	
 	await get_tree().create_timer(2).timeout
 	var fade_tween = create_tween()

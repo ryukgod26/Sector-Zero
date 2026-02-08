@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://bocjrdjn6oogc"]
+[gd_scene load_steps=26 format=3 uid="uid://bocjrdjn6oogc"]
 
 [ext_resource type="Script" uid="uid://rd7eft4k6rhv" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
+[ext_resource type="Script" uid="uid://cm5tgurupa1uw" path="res://Scripts/Player/weapon_recoil.gd" id="2_06tpx"]
 [ext_resource type="PackedScene" uid="uid://blofjoh2qp8rd" path="res://Scenes/UI/ui.tscn" id="2_a3d8c"]
 [ext_resource type="PackedScene" uid="uid://wm2ufg26wgvo" path="res://Scenes/Weapons/assault_rifle.tscn" id="2_oikmp"]
 [ext_resource type="Script" uid="uid://byk0ihjcoiugl" path="res://Scripts/State_Machines/state_machine.gd" id="3_xpcdj"]
@@ -300,7 +301,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("CameraController/Camera3D:fov")
+tracks/7/path = NodePath("CameraController/Recoil/Camera3D:fov")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -398,8 +399,8 @@ _data = {
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER", "WEAPON_CONTROLLER")]
 script = ExtResource("1_a3d8c")
-CAMERA_CONTROLLER = NodePath("CameraController/Camera3D")
-WEAPON_CONTROLLER = NodePath("CameraController/Camera3D/WeaponRig/Weapon")
+CAMERA_CONTROLLER = NodePath("CameraController/Recoil/Camera3D")
+WEAPON_CONTROLLER = NodePath("CameraController/Recoil/Camera3D/WeaponRig/Weapon")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -412,16 +413,23 @@ mesh = SubResource("CapsuleMesh_uvnfx")
 [node name="CameraController" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CameraController"]
+[node name="Recoil" type="Node3D" parent="CameraController" node_paths=PackedStringArray("weapon")]
+script = ExtResource("2_06tpx")
+recoil_amount = Vector3(0.25, 0.1, 0)
+snap_amount = 8.0
+speed = 4.0
+weapon = NodePath("Camera3D/WeaponRig/Weapon")
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="CameraController/Camera3D"]
+[node name="Camera3D" type="Camera3D" parent="CameraController/Recoil"]
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="CameraController/Recoil/Camera3D"]
 update_mode = 1
 enable_shadows = true
 ambient_mode = 0
 
-[node name="WeaponRig" type="Node3D" parent="CameraController/Camera3D"]
+[node name="WeaponRig" type="Node3D" parent="CameraController/Recoil/Camera3D"]
 
-[node name="Weapon" parent="CameraController/Camera3D/WeaponRig" instance=ExtResource("2_oikmp")]
+[node name="Weapon" parent="CameraController/Recoil/Camera3D/WeaponRig" instance=ExtResource("2_oikmp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98672247, -0.67353225, -2.5442967)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
