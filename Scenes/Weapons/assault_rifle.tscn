@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://wm2ufg26wgvo"]
+[gd_scene load_steps=7 format=3 uid="uid://wm2ufg26wgvo"]
 
 [ext_resource type="Script" uid="uid://dm0mlc3c28xci" path="res://Scripts/Weapons/init_weapon.gd" id="1_1mtf5"]
 [ext_resource type="ArrayMesh" uid="uid://b15gusbnr6grx" path="res://assets/Weapons/AssaultRifle/assault_rifle.res" id="1_8stto"]
 [ext_resource type="Resource" uid="uid://dcmtv32d5gctf" path="res://assets/Weapons/AssaultRifle/assault_rifle.tres" id="2_jm7vw"]
+[ext_resource type="Script" uid="uid://bjvrr536042rl" path="res://Scripts/Weapons/recoil_position.gd" id="3_8fsu4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jm7vw"]
 
@@ -15,12 +16,18 @@ weapon_type = ExtResource("2_jm7vw")
 sway_noise = SubResource("NoiseTexture2D_8fsu4")
 metadata/_custom_type_script = "uid://dm0mlc3c28xci"
 
-[node name="WeaponMesh" type="MeshInstance3D" parent="."]
+[node name="RecoilPosition" type="Node3D" parent="." node_paths=PackedStringArray("weapon")]
+script = ExtResource("3_8fsu4")
+weapon = NodePath("..")
+
+[node name="WeaponMesh" type="MeshInstance3D" parent="RecoilPosition"]
 unique_name_in_owner = true
 cast_shadow = 0
 mesh = ExtResource("1_8stto")
+skeleton = NodePath("../..")
 
-[node name="WeaponShadow" type="MeshInstance3D" parent="."]
+[node name="WeaponShadow" type="MeshInstance3D" parent="RecoilPosition"]
 unique_name_in_owner = true
 cast_shadow = 3
 mesh = ExtResource("1_8stto")
+skeleton = NodePath("../..")
