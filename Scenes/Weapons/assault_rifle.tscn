@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://wm2ufg26wgvo"]
+[gd_scene load_steps=13 format=3 uid="uid://wm2ufg26wgvo"]
 
 [ext_resource type="Script" uid="uid://dm0mlc3c28xci" path="res://Scripts/Weapons/init_weapon.gd" id="1_1mtf5"]
 [ext_resource type="ArrayMesh" uid="uid://b15gusbnr6grx" path="res://assets/Weapons/AssaultRifle/assault_rifle.res" id="1_8stto"]
@@ -12,12 +12,29 @@
 noise = SubResource("FastNoiseLite_jm7vw")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_28s2r"]
+angle_min = -74.99999
+angle_max = 75.000015
 direction = Vector3(0, 1, 0)
 initial_velocity_min = 0.7
-initial_velocity_max = 205.0
+initial_velocity_max = 3.0
 gravity = Vector3(0, 0, 0)
 
+[sub_resource type="Gradient" id="Gradient_28s2r"]
+colors = PackedColorArray(0.9847885, 0.7086629, 0.46980417, 1, 0, 0, 0, 0.1254902)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cxxjh"]
+gradient = SubResource("Gradient_28s2r")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxxjh"]
+transparency = 1
+blend_mode = 1
+albedo_texture = SubResource("GradientTexture2D_cxxjh")
+roughness = 0.0
+emission_enabled = true
+emission_energy_multiplier = 16.0
+emission_texture = SubResource("GradientTexture2D_cxxjh")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -51,14 +68,17 @@ mesh = ExtResource("1_8stto")
 skeleton = NodePath("../..")
 
 [node name="MuzzleFlash" type="Node3D" parent="." node_paths=PackedStringArray("weapon")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16190791, -2.1320453)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03024602, -0.11544907, -2.2177415)
 script = ExtResource("5_28s2r")
 weapon = NodePath("..")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="MuzzleFlash"]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="MuzzleFlash"]
-lifetime = 0.09999999999999999
+emitting = false
+amount = 20
+lifetime = 0.1
+one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_28s2r")
 draw_pass_1 = SubResource("QuadMesh_28s2r")
