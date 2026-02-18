@@ -154,9 +154,11 @@ func interact_cast() -> void:
 	if interact_cast_result != current_cast_result:
 		if interact_cast_result and interact_cast_result.has_user_signal("unfocused"):
 			print(interact_cast_result," is unfocused now.")
+			interact_cast_result.emit_signal("unfocused")
 		interact_cast_result = current_cast_result
 		if interact_cast_result and interact_cast_result.has_user_signal("focused"):
 			print(interact_cast_result," is focused now.")
+			interact_cast_result.emit_signal("focused")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Interact"):
