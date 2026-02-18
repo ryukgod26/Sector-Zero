@@ -13,6 +13,7 @@ extends CharacterBody3D
 @export var CAMERA_CONTROLLER: Camera3D
 @export var MOUSE_SENSTIVITY: float = 0.5
 @export var WEAPON_CONTROLLER: WeaponController
+@export var INTERACT_DISTANCE := 2.
 #@export var TOGGLE_CROUCH := true
 @export_range(5,10,0.1) var CROUCH_ANIM_SPEED := 7.0
 
@@ -28,6 +29,7 @@ var _player_rotation: Vector3
 var _camera_rotation: Vector3
 var _current_rotation: float
 #var is_crouching := false
+var interact_cast_result
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -41,6 +43,7 @@ func _physics_process(delta: float) -> void:
 	
 	Globals.debug.add_property("Movement Speed",_speed,1)
 	_update_camera(delta)
+	interact_cast()
 	#if Input.is_action_just_pressed("Jump") and is_on_floor() and not is_crouching:
 		#velocity.y += JUMP_VELOCITY
 
@@ -74,7 +77,6 @@ func _update_camera(delta):
 	
 	_rotation_input = 0.0
 	_tilt_input = 0.0
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	_mouse_input = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
@@ -130,7 +132,27 @@ func update_input(speed: float, acceleration: float, deacceleration: float) -> v
 		velocity.z = move_toward(velocity.z, 0 , deacceleration)
 
 func update_gravity(delta: float) -> void:
-		velocity.y -= gravity * delta
+	velocity.y -= gravity * delta
 
 func update_velocity() -> void:
 	move_and_slide()
+
+func interact() -> void:
+	if interact_cast_result:
+		print(interact_cast_result)
+
+func interact_cast() -> void:
+	var camera:Camera3D = Globals.player.CAMERA_CONTROLLER
+	var space_state = camera.get_world_3d().direct_space_state
+	var screen_center = get_viewport().size / 2
+	var origin = camera.project_ray_origin(screen_center)
+	var end = origin + camera.project_ray_normal(screen_center) * INTERACT_DISTANCE
+	var query = PhysicsRayQueryParameters3D.create(origin,end)
+	query.collide_with_bodies = true
+	var result = space_state.intersect_ray(query)
+	var current_cast_result = result.get("collider")
+	interact_cast_result = current_cast_result
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Interact"):
+		interact()

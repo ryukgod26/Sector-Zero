@@ -430,7 +430,6 @@ ambient_mode = 0
 [node name="WeaponRig" type="Node3D" parent="CameraController/Recoil/Camera3D"]
 
 [node name="Weapon" parent="CameraController/Recoil/Camera3D/WeaponRig" instance=ExtResource("2_oikmp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98672247, -0.67353225, -2.5442967)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
