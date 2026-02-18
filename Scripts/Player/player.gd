@@ -138,8 +138,8 @@ func update_velocity() -> void:
 	move_and_slide()
 
 func interact() -> void:
-	if interact_cast_result:
-		print(interact_cast_result)
+	if interact_cast_result and interact_cast_result.has_user_signal("interacted"):
+		interact_cast_result.emit_signal("interacted")
 
 func interact_cast() -> void:
 	var camera:Camera3D = Globals.player.CAMERA_CONTROLLER

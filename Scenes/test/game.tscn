@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://cff7enaplcmu0"]
+[gd_scene load_steps=21 format=3 uid="uid://cff7enaplcmu0"]
 
 [ext_resource type="PackedScene" uid="uid://cmtegt1anmu5w" path="res://Scenes/test/WE_Test.tscn" id="1_dhce4"]
 [ext_resource type="PackedScene" uid="uid://bocjrdjn6oogc" path="res://Scenes/Player/player.tscn" id="2_bkk7d"]
+[ext_resource type="Script" uid="uid://dlo5umtapr8p1" path="res://Scripts/Player/interaction_component.gd" id="3_qwbg2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mrt3l"]
 
@@ -10,13 +11,13 @@
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qwbg2"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dhce4"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bkk7d"]
 albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_nxjle"]
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dhce4"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwbg2"]
 albedo_color = Color(0, 0, 1, 1)
@@ -67,16 +68,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7426496, 1, 0)
 
 [node name="Objects" type="Node3D" parent="."]
 
-[node name="Box" type="MeshInstance3D" parent="Objects"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50365555, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_dhce4")
+
+[node name="Box" type="MeshInstance3D" parent="Objects/StaticBody3D"]
 material_override = SubResource("StandardMaterial3D_bkk7d")
 mesh = SubResource("BoxMesh_nxjle")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Objects/Box"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Box/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_dhce4")
+[node name="InteractionComponent" type="Node" parent="Objects/StaticBody3D"]
+script = ExtResource("3_qwbg2")
+metadata/_custom_type_script = "uid://dlo5umtapr8p1"
 
 [node name="Border" type="MeshInstance3D" parent="Objects"]
 transform = Transform3D(259.38553, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50365555, 125.64899)
