@@ -151,7 +151,12 @@ func interact_cast() -> void:
 	query.collide_with_bodies = true
 	var result = space_state.intersect_ray(query)
 	var current_cast_result = result.get("collider")
-	interact_cast_result = current_cast_result
+	if interact_cast_result != current_cast_result:
+		if interact_cast_result and interact_cast_result.has_user_signal("unfocused"):
+			print(interact_cast_result," is unfocused now.")
+		interact_cast_result = current_cast_result
+		if interact_cast_result and interact_cast_result.has_user_signal("focused"):
+			print(interact_cast_result," is focused now.")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Interact"):
