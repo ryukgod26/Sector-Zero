@@ -1,4 +1,5 @@
 extends Node
 
 var debug
-var player
+var player: Player
+var ui_context: ContextComponent

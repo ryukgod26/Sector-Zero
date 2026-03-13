@@ -3,6 +3,9 @@ extends Node
 
 var parent
 @export var mesh: MeshInstance3D
+@export var context: String
+@export var override_icon: bool
+@export var new_icon: Texture2D
 
 var highlight_material = preload("res://Materials/interactable_highlights.tres")
 
@@ -21,9 +24,12 @@ func connect_parent() -> void:
 
 func in_range() -> void:
 	mesh.material_overlay = highlight_material
+	Globals.ui_context.update_context(context)
+	Globals.ui_context.update_icon(new_icon,override_icon)
 
 func not_in_range() -> void:
 	mesh.material_overlay = null
+	Globals.ui_context.reset()
 
 func on_interact() -> void:
 	print(parent.name)

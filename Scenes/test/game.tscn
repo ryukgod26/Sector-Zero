@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cff7enaplcmu0"]
+[gd_scene load_steps=28 format=3 uid="uid://cff7enaplcmu0"]
 
 [ext_resource type="PackedScene" uid="uid://cmtegt1anmu5w" path="res://Scenes/test/WE_Test.tscn" id="1_dhce4"]
 [ext_resource type="PackedScene" uid="uid://bocjrdjn6oogc" path="res://Scenes/Player/player.tscn" id="2_bkk7d"]
@@ -63,6 +63,9 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 [sub_resource type="BoxMesh" id="BoxMesh_37vc2"]
 size = Vector3(0.02, 2.2, 1.5)
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pugea"]
+points = PackedVector3Array(-0.027453482, -1.1172416, -0.76746035, 0.04237412, 1.1172416, 0.76904774, -0.027453482, 1.1172416, 0.76904774, 0.04237412, -1.1172416, 0.76904774, 0.04237412, 1.1172416, -0.76746035, -0.027453482, 1.1172416, -0.76746035, -0.027453482, -1.1172416, 0.76904774, 0.04237412, -1.1172416, -0.76746035)
+
 [node name="Game" type="Node3D"]
 
 [node name="WE_Test" parent="." instance=ExtResource("1_dhce4")]
@@ -96,6 +99,7 @@ skeleton = NodePath("../../..")
 [node name="InteractionComponent" type="Node" parent="Objects/InteractableBox" node_paths=PackedStringArray("mesh")]
 script = ExtResource("3_qwbg2")
 mesh = NodePath("../Box")
+context = "This is a Box"
 metadata/_custom_type_script = "uid://dlo5umtapr8p1"
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Objects"]
@@ -262,11 +266,16 @@ mesh = SubResource("BoxMesh_37vc2")
 [node name="Label3D" type="Label3D" parent="DoorWall/AnimatableBody3D/Door"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DoorWall/AnimatableBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4434958, -0.0054426193)
+shape = SubResource("ConvexPolygonShape3D_pugea")
 
 [node name="DoorComponent" type="Node" parent="DoorWall/AnimatableBody3D"]
 script = ExtResource("5_pugea")
+transition_type = 7
+easing = 2
 metadata/_custom_type_script = "uid://ba2vttynkmn0p"
 
-[node name="InteractionComponent" type="Node" parent="DoorWall/AnimatableBody3D"]
+[node name="InteractionComponent" type="Node" parent="DoorWall/AnimatableBody3D" node_paths=PackedStringArray("mesh")]
 script = ExtResource("3_qwbg2")
+mesh = NodePath("../Door")
 metadata/_custom_type_script = "uid://dlo5umtapr8p1"

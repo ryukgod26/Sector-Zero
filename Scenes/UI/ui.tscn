@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://blofjoh2qp8rd"]
+[gd_scene load_steps=6 format=3 uid="uid://blofjoh2qp8rd"]
 
 [ext_resource type="Script" uid="uid://cg1e1ufdkw0r2" path="res://Scripts/UI/reticle.gd" id="1_ahcct"]
 [ext_resource type="Theme" uid="uid://ym37uhysyl0v" path="res://Scenes/UI/themes/debug.tres" id="2_de23q"]
+[ext_resource type="Script" uid="uid://dfw37xqojf476" path="res://Scripts/UI/context_component.gd" id="2_fo61o"]
+[ext_resource type="Texture2D" uid="uid://dplp0sfuwgin6" path="res://assets/kenney_input-prompts_1.4/Keyboard & Mouse/Default/keyboard_e.png" id="3_alcrr"]
 [ext_resource type="Script" uid="uid://cta5c48syafeo" path="res://Scripts/UI/debug_panel.gd" id="3_c7mb3"]
 
 [node name="UI" type="Control" node_paths=PackedStringArray("RETICAL_LINES")]
@@ -43,6 +45,27 @@ width = 2.0
 [node name="Left" type="Line2D" parent="Reticle"]
 points = PackedVector2Array(-5, 0, -15, 0)
 width = 2.0
+
+[node name="ContextComponent" type="CenterContainer" parent="." node_paths=PackedStringArray("icon", "context")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_fo61o")
+icon = NodePath("HBoxContainer/TextureRect")
+context = NodePath("HBoxContainer/Label")
+default_icon = ExtResource("3_alcrr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ContextComponent"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ContextComponent/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ContextComponent/HBoxContainer"]
+layout_mode = 2
 
 [node name="DebugPanel" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)
