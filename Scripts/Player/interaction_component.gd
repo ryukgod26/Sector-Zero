@@ -24,12 +24,14 @@ func connect_parent() -> void:
 
 func in_range() -> void:
 	mesh.material_overlay = highlight_material
-	Globals.ui_context.update_context(context)
-	Globals.ui_context.update_icon(new_icon,override_icon)
+	MessageBus.interaction_focused.emit(context,new_icon,override_icon)
+	#Globals.ui_context.update_context(context)
+	#Globals.ui_context.update_icon(new_icon,override_icon)
 
 func not_in_range() -> void:
 	mesh.material_overlay = null
-	Globals.ui_context.reset()
+	#Globals.ui_context.reset()
+	MessageBus.interaction_unfocused.emit()
 
 func on_interact() -> void:
 	print(parent.name)
