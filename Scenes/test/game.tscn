@@ -1,10 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://cff7enaplcmu0"]
+[gd_scene load_steps=26 format=3 uid="uid://cff7enaplcmu0"]
 
 [ext_resource type="PackedScene" uid="uid://cmtegt1anmu5w" path="res://Scenes/test/WE_Test.tscn" id="1_dhce4"]
 [ext_resource type="PackedScene" uid="uid://bocjrdjn6oogc" path="res://Scenes/Player/player.tscn" id="2_bkk7d"]
 [ext_resource type="Script" uid="uid://dlo5umtapr8p1" path="res://Scripts/Player/interaction_component.gd" id="3_qwbg2"]
 [ext_resource type="Material" uid="uid://dep7c3ktkdpp2" path="res://Materials/interactable_highlights.tres" id="4_mrt3l"]
-[ext_resource type="Script" uid="uid://ba2vttynkmn0p" path="res://Scripts/Door/door.gd" id="5_pugea"]
+[ext_resource type="PackedScene" uid="uid://cclwtquqn7nvt" path="res://Scenes/test/door_wall.tscn" id="5_pugea"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mrt3l"]
 
@@ -59,12 +59,6 @@ material = SubResource("StandardMaterial3D_m7dh0")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_37vc2"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_37vc2"]
-size = Vector3(0.02, 2.2, 1.5)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pugea"]
-points = PackedVector3Array(-0.027453482, -1.1172416, -0.76746035, 0.04237412, 1.1172416, 0.76904774, -0.027453482, 1.1172416, 0.76904774, 0.04237412, -1.1172416, 0.76904774, 0.04237412, 1.1172416, -0.76746035, -0.027453482, 1.1172416, -0.76746035, -0.027453482, -1.1172416, 0.76904774, 0.04237412, -1.1172416, -0.76746035)
 
 [node name="Game" type="Node3D"]
 
@@ -248,34 +242,5 @@ script = ExtResource("3_qwbg2")
 mesh = NodePath("../MeshInstance3D")
 metadata/_custom_type_script = "uid://dlo5umtapr8p1"
 
-[node name="DoorWall" type="CSGBox3D" parent="."]
+[node name="DoorWall" parent="." instance=ExtResource("5_pugea")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.09522, 2.514173, -12.511587)
-size = Vector3(0.9, 5, 5)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="DoorWall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014678955, -1.4304655, 0)
-operation = 2
-size = Vector3(1, 2.2, 1.5)
-
-[node name="AnimatableBody3D" type="AnimatableBody3D" parent="DoorWall"]
-
-[node name="Door" type="MeshInstance3D" parent="DoorWall/AnimatableBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4434958, -0.0054426193)
-mesh = SubResource("BoxMesh_37vc2")
-
-[node name="Label3D" type="Label3D" parent="DoorWall/AnimatableBody3D/Door"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorWall/AnimatableBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4434958, -0.0054426193)
-shape = SubResource("ConvexPolygonShape3D_pugea")
-
-[node name="DoorComponent" type="Node" parent="DoorWall/AnimatableBody3D"]
-script = ExtResource("5_pugea")
-transition_type = 7
-easing = 2
-metadata/_custom_type_script = "uid://ba2vttynkmn0p"
-
-[node name="InteractionComponent" type="Node" parent="DoorWall/AnimatableBody3D" node_paths=PackedStringArray("mesh")]
-script = ExtResource("3_qwbg2")
-mesh = NodePath("../Door")
-metadata/_custom_type_script = "uid://dlo5umtapr8p1"

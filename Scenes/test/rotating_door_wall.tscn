@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://cils0ndobwlx7"]
+
+[ext_resource type="Script" uid="uid://ba2vttynkmn0p" path="res://Scripts/Door/door.gd" id="1_21rba"]
+[ext_resource type="Script" uid="uid://dlo5umtapr8p1" path="res://Scripts/Player/interaction_component.gd" id="2_0h2rn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4qnb"]
+albedo_color = Color(1, 0.4627451, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_37vc2"]
+size = Vector3(0.02, 2.2, 1.395)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pugea"]
+points = PackedVector3Array(-0.027453482, -1.1172416, -0.76746035, 0.04237412, 1.1172416, 0.76904774, -0.027453482, 1.1172416, 0.76904774, 0.04237412, -1.1172416, 0.76904774, 0.04237412, 1.1172416, -0.76746035, -0.027453482, 1.1172416, -0.76746035, -0.027453482, -1.1172416, 0.76904774, 0.04237412, -1.1172416, -0.76746035)
+
+[node name="RotatingDoorWall" type="CSGBox3D"]
+material_override = SubResource("StandardMaterial3D_u4qnb")
+size = Vector3(0.9, 5, 5)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014678955, -1.4304655, 0)
+operation = 2
+size = Vector3(1, 2.2, 1.5)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9379395, 0.7391407)
+
+[node name="Door" type="MeshInstance3D" parent="AnimatableBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0752902, -0.041933835, -0.49378264, -0.7136915)
+mesh = SubResource("BoxMesh_37vc2")
+
+[node name="Label3D" type="Label3D" parent="AnimatableBody3D/Door"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4434958, -0.0054426193)
+shape = SubResource("ConvexPolygonShape3D_pugea")
+
+[node name="DoorComponent" type="Node" parent="AnimatableBody3D"]
+script = ExtResource("1_21rba")
+transition_type = 7
+easing = 2
+metadata/_custom_type_script = "uid://ba2vttynkmn0p"
+
+[node name="InteractionComponent" type="Node" parent="AnimatableBody3D" node_paths=PackedStringArray("mesh")]
+script = ExtResource("2_0h2rn")
+mesh = NodePath("../Door")
+metadata/_custom_type_script = "uid://dlo5umtapr8p1"
