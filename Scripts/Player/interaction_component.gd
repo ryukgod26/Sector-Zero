@@ -7,6 +7,8 @@ var parent
 @export var override_icon: bool
 @export var new_icon: Texture2D
 
+signal player_interacted(object)
+
 var highlight_material = preload("res://Materials/interactable_highlights.tres")
 
 func _ready() -> void:
@@ -35,6 +37,7 @@ func not_in_range() -> void:
 
 func on_interact() -> void:
 	print(parent.name)
+	player_interacted.emit(parent)
 
 func set_default_mesh() -> void:
 	if not mesh:
