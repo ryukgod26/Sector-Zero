@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bocjrdjn6oogc" path="res://Scenes/Player/player.tscn" id="2_bkk7d"]
 [ext_resource type="Script" uid="uid://dlo5umtapr8p1" path="res://Scripts/Player/interaction_component.gd" id="3_qwbg2"]
 [ext_resource type="Material" uid="uid://dep7c3ktkdpp2" path="res://Materials/interactable_highlights.tres" id="4_mrt3l"]
-[ext_resource type="PackedScene" uid="uid://cclwtquqn7nvt" path="res://Scenes/test/door_wall.tscn" id="5_pugea"]
+[ext_resource type="PackedScene" uid="uid://cclwtquqn7nvt" path="res://Scenes/Door/door_wall.tscn" id="5_pugea"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mrt3l"]
 

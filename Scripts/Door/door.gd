@@ -1,7 +1,7 @@
 class_name DoorComponent
 extends Area3D
 
-enum DoorType {Sliding, Rotating}
+enum DoorType {Sliding, Rotating, Physics}
 enum ForwardDirection {X,Y,Z}
 enum DoorStatus {OPEN,CLOSED}
 enum DoorOperation {MANUAL,CLOSE_AUTOMATICALLY, OPEN_CLOSE_AUTOMATICALLY}
@@ -12,6 +12,7 @@ enum DoorOperation {MANUAL,CLOSE_AUTOMATICALLY, OPEN_CLOSE_AUTOMATICALLY}
 @export var move_dir: Vector3
 @export var rotation_axis := Vector3(0,1,0)
 @export var rotation_amount := 90.
+@export var physics_force := 30.
 @export var door_size: Vector3
 @export var close_time := 2.0
 @export var door_operation: DoorOperation
@@ -35,7 +36,7 @@ func _ready() -> void:
 	parent.ready.connect(connect_parent)
 
 func connect_parent():
-	if door_operation == DoorOperation.MANUAL:
+	if door_operation == DoorOperation.MANUAL or door_type == DoorType.Physics:
 		parent.connect("interacted",Callable(self,"check_door"))
 
 func open_door() -> void:
@@ -77,11 +78,16 @@ func check_door() -> void:
 		rotation_adjustment = -1
 	else:
 		rotation_adjustment = 1
-	match door_status:
-		DoorStatus.CLOSED:
-			open_door()
-		DoorStatus.OPEN:
-			close_door()
+		
+	if door_type == DoorType.Physics:
+		var door = parent as RigidBody3D
+		door.apply_impulse(door_direction * physics_force * -rotation_adjustment)
+	else:
+		match door_status:
+			DoorStatus.CLOSED:
+				open_door()
+			DoorStatus.OPEN:
+				close_door()
 
 func open_door_trigger(body: Node3D) -> void:
 	if door_operation == DoorOperation.OPEN_CLOSE_AUTOMATICALLY:
