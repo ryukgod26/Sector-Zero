@@ -3,6 +3,7 @@ extends Node
 
 enum DoorType {Sliding, Rotating}
 enum ForwardDirection {X,Y,Z}
+enum DoorStatus {OPEN,CLOSED}
 
 @export_group("Door Settings")
 @export var door_type: DoorType
@@ -12,6 +13,7 @@ enum ForwardDirection {X,Y,Z}
 @export var rotation_amount := 90.
 @export var door_size: Vector3
 @export var close_time := 2.0
+@export var close_automatically := true
 @export_group("Tween Setings")
 @export var speed := 0.5
 @export var transition_type: Tween.TransitionType
@@ -22,6 +24,7 @@ var orig_pos: Vector3
 var orig_rot: Vector3
 var door_direction: Vector3
 var rotation_adjustment: float
+var door_status := DoorStatus.CLOSED
 
 func _ready() -> void:
 	parent = get_parent()
@@ -30,9 +33,10 @@ func _ready() -> void:
 	parent.ready.connect(connect_parent)
 
 func connect_parent():
-	parent.connect("interacted",Callable(self,"open_door"))
+	parent.connect("interacted",Callable(self,"check_door"))
 
 func open_door() -> void:
+	door_status = DoorStatus.OPEN
 	var tween = create_tween()
 	match door_type:
 		DoorType.Sliding:
@@ -40,10 +44,12 @@ func open_door() -> void:
 		DoorType.Rotating:
 			#tween.tween_property(parent,"position",orig_pos + (move_dir * door_size),speed).set_trans(transition_type).set_ease(easing)
 			tween.tween_property(parent,"rotation",orig_rot + (rotation * rotation_adjustment * deg_to_rad(rotation_amount)),speed).set_trans(transition_type).set_ease(easing)
-	tween.tween_interval(close_time)
-	tween.tween_callback(close_door)
+	if close_automatically:
+		tween.tween_interval(close_time)
+		tween.tween_callback(close_door)
 
 func close_door() -> void:
+	door_status = DoorStatus.CLOSED
 	var tween = create_tween()
 	match door_type:
 		DoorType.Sliding:
@@ -68,4 +74,8 @@ func check_door() -> void:
 		rotation_adjustment = -1
 	else:
 		rotation_adjustment = 1
-	open_door()
+	match door_status:
+		DoorStatus.CLOSED:
+			open_door()
+		DoorStatus.OPEN:
+			close_door()
