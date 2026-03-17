@@ -1,19 +1,21 @@
 class_name DoorComponent
-extends Node
+extends Area3D
 
 enum DoorType {Sliding, Rotating}
 enum ForwardDirection {X,Y,Z}
 enum DoorStatus {OPEN,CLOSED}
+enum DoorOperation {MANUAL,CLOSE_AUTOMATICALLY, OPEN_CLOSE_AUTOMATICALLY}
 
 @export_group("Door Settings")
 @export var door_type: DoorType
 @export var forward_direction: ForwardDirection
 @export var move_dir: Vector3
-@export var rotation := Vector3(0,1,0)
+@export var rotation_axis := Vector3(0,1,0)
 @export var rotation_amount := 90.
 @export var door_size: Vector3
 @export var close_time := 2.0
-@export var close_automatically := true
+@export var door_operation: DoorOperation
+#@export var close_automatically := true
 @export_group("Tween Setings")
 @export var speed := 0.5
 @export var transition_type: Tween.TransitionType
@@ -33,7 +35,8 @@ func _ready() -> void:
 	parent.ready.connect(connect_parent)
 
 func connect_parent():
-	parent.connect("interacted",Callable(self,"check_door"))
+	if door_operation == DoorOperation.MANUAL:
+		parent.connect("interacted",Callable(self,"check_door"))
 
 func open_door() -> void:
 	door_status = DoorStatus.OPEN
@@ -43,8 +46,8 @@ func open_door() -> void:
 			tween.tween_property(parent,"position",orig_pos + (move_dir * door_size),speed).set_trans(transition_type).set_ease(easing)
 		DoorType.Rotating:
 			#tween.tween_property(parent,"position",orig_pos + (move_dir * door_size),speed).set_trans(transition_type).set_ease(easing)
-			tween.tween_property(parent,"rotation",orig_rot + (rotation * rotation_adjustment * deg_to_rad(rotation_amount)),speed).set_trans(transition_type).set_ease(easing)
-	if close_automatically:
+			tween.tween_property(parent,"rotation",orig_rot + (rotation_axis * rotation_adjustment * deg_to_rad(rotation_amount)),speed).set_trans(transition_type).set_ease(easing)
+	if door_operation == DoorOperation.CLOSE_AUTOMATICALLY:
 		tween.tween_interval(close_time)
 		tween.tween_callback(close_door)
 
@@ -79,3 +82,11 @@ func check_door() -> void:
 			open_door()
 		DoorStatus.OPEN:
 			close_door()
+
+func open_door_trigger(body: Node3D) -> void:
+	if door_operation == DoorOperation.OPEN_CLOSE_AUTOMATICALLY:
+		check_door()
+
+func close_door_trigger(body: Node3D) -> void:
+	if door_operation == DoorOperation.OPEN_CLOSE_AUTOMATICALLY:
+		check_door()

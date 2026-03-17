@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cils0ndobwlx7"]
+[gd_scene load_steps=7 format=3 uid="uid://cils0ndobwlx7"]
 
 [ext_resource type="Script" uid="uid://ba2vttynkmn0p" path="res://Scripts/Door/door.gd" id="1_21rba"]
 [ext_resource type="Script" uid="uid://dlo5umtapr8p1" path="res://Scripts/Player/interaction_component.gd" id="2_0h2rn"]
@@ -11,6 +11,9 @@ size = Vector3(0.02, 2.2, 1.395)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pugea"]
 points = PackedVector3Array(-0.027453482, -1.1172416, -0.76746035, 0.04237412, 1.1172416, 0.76904774, -0.027453482, 1.1172416, 0.76904774, 0.04237412, -1.1172416, 0.76904774, 0.04237412, 1.1172416, -0.76746035, -0.027453482, 1.1172416, -0.76746035, -0.027453482, -1.1172416, 0.76904774, 0.04237412, -1.1172416, -0.76746035)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fawjo"]
+radius = 0.9582198
 
 [node name="RotatingDoorWall" type="CSGBox3D"]
 material_override = SubResource("StandardMaterial3D_u4qnb")
@@ -31,19 +34,20 @@ mesh = SubResource("BoxMesh_37vc2")
 [node name="Label3D" type="Label3D" parent="AnimatableBody3D/Door"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4434958, -0.0054426193)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.47240126, -0.74570316)
 shape = SubResource("ConvexPolygonShape3D_pugea")
 
-[node name="DoorComponent" type="Node" parent="AnimatableBody3D"]
+[node name="DoorComponent" type="Area3D" parent="AnimatableBody3D"]
 script = ExtResource("1_21rba")
-door_type = 1
-door_size = Vector3(0.2, 2.2, 1.5)
-close_time = 1.0
-transition_type = 5
-easing = 2
-metadata/_custom_type_script = "uid://ba2vttynkmn0p"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D/DoorComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2941357, -0.5523087)
+shape = SubResource("SphereShape3D_fawjo")
 
 [node name="InteractionComponent" type="Node" parent="AnimatableBody3D" node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_0h2rn")
 mesh = NodePath("../Door")
 metadata/_custom_type_script = "uid://dlo5umtapr8p1"
+
+[connection signal="body_entered" from="AnimatableBody3D/DoorComponent" to="AnimatableBody3D/DoorComponent" method="open_door_trigger"]
+[connection signal="body_exited" from="AnimatableBody3D/DoorComponent" to="AnimatableBody3D/DoorComponent" method="close_door_trigger"]
