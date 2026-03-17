@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://bocjrdjn6oogc"]
+[gd_scene load_steps=28 format=3 uid="uid://bocjrdjn6oogc"]
 
 [ext_resource type="Script" uid="uid://rd7eft4k6rhv" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="Script" uid="uid://cm5tgurupa1uw" path="res://Scripts/Player/weapon_recoil.gd" id="2_06tpx"]
 [ext_resource type="PackedScene" uid="uid://blofjoh2qp8rd" path="res://Scenes/UI/ui.tscn" id="2_a3d8c"]
 [ext_resource type="PackedScene" uid="uid://wm2ufg26wgvo" path="res://Scenes/Weapons/assault_rifle.tscn" id="2_oikmp"]
+[ext_resource type="Script" uid="uid://bup0bfgf75rs7" path="res://Scripts/Player/interaction_raycast.gd" id="3_dey5f"]
 [ext_resource type="Script" uid="uid://byk0ihjcoiugl" path="res://Scripts/State_Machines/state_machine.gd" id="3_xpcdj"]
 [ext_resource type="Script" uid="uid://enf23qbeq8fg" path="res://Scripts/State_Machines/States/idle_player_state.gd" id="4_mtuoh"]
 [ext_resource type="Script" uid="uid://e7fqnu76d5oq" path="res://Scripts/State_Machines/States/walking_player_state.gd" id="5_htcer"]
@@ -422,6 +423,12 @@ speed = 4.0
 weapon = NodePath("Camera3D/WeaponRig/Weapon")
 
 [node name="Camera3D" type="Camera3D" parent="CameraController/Recoil"]
+
+[node name="InteractionRaycast" type="RayCast3D" parent="CameraController/Recoil/Camera3D"]
+target_position = Vector3(0, 0, -2)
+hit_back_faces = false
+debug_shape_thickness = 1
+script = ExtResource("3_dey5f")
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="CameraController/Recoil/Camera3D"]
 update_mode = 1
