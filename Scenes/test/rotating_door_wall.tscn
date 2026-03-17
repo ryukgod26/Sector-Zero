@@ -37,7 +37,9 @@ shape = SubResource("ConvexPolygonShape3D_pugea")
 [node name="DoorComponent" type="Node" parent="AnimatableBody3D"]
 script = ExtResource("1_21rba")
 door_type = 1
-transition_type = 7
+door_size = Vector3(0.2, 2.2, 1.5)
+close_time = 1.0
+transition_type = 5
 easing = 2
 metadata/_custom_type_script = "uid://ba2vttynkmn0p"
 
