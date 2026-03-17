@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bocjrdjn6oogc"]
+[gd_scene load_steps=27 format=3 uid="uid://bocjrdjn6oogc"]
 
 [ext_resource type="Script" uid="uid://rd7eft4k6rhv" path="res://Scripts/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="Script" uid="uid://cm5tgurupa1uw" path="res://Scripts/Player/weapon_recoil.gd" id="2_06tpx"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://d3k0pmpnb5am3" path="res://Scripts/State_Machines/States/jumping_player_state.gd" id="9_gk6dx"]
 [ext_resource type="Script" uid="uid://c5ope8i0fc4r6" path="res://Scripts/State_Machines/States/double_jumping_player_state.gd" id="10_jhyir"]
 [ext_resource type="Script" uid="uid://cjhj3qgwn6qpd" path="res://Scripts/State_Machines/States/falling_player_state.gd" id="11_74mp2"]
+[ext_resource type="Script" uid="uid://eee17amsr0o6" path="res://Scripts/Player/physics_component.gd" id="14_7g0yx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tugb3"]
 
@@ -473,5 +474,9 @@ script = ExtResource("10_jhyir")
 
 [node name="FallingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("11_74mp2")
+
+[node name="PhysicsComponent" type="Node" parent="." node_paths=PackedStringArray("character")]
+script = ExtResource("14_7g0yx")
+character = NodePath("..")
 
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
