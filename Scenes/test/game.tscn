@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cff7enaplcmu0"]
+[gd_scene load_steps=28 format=3 uid="uid://cff7enaplcmu0"]
 
 [ext_resource type="PackedScene" uid="uid://cmtegt1anmu5w" path="res://Scenes/test/WE_Test.tscn" id="1_dhce4"]
 [ext_resource type="PackedScene" uid="uid://bocjrdjn6oogc" path="res://Scenes/Player/player.tscn" id="2_bkk7d"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bp1alpxjl21pl" path="res://Scripts/Interactables/pick_up_component.gd" id="4_m7dh0"]
 [ext_resource type="Material" uid="uid://dep7c3ktkdpp2" path="res://Materials/interactable_highlights.tres" id="4_mrt3l"]
 [ext_resource type="PackedScene" uid="uid://cclwtquqn7nvt" path="res://Scenes/Door/door_wall.tscn" id="5_pugea"]
+[ext_resource type="PackedScene" uid="uid://cils0ndobwlx7" path="res://Scenes/Door/rotating_door_wall.tscn" id="7_2nm34"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mrt3l"]
 
@@ -248,3 +249,6 @@ metadata/_custom_type_script = "uid://dlo5umtapr8p1"
 
 [node name="DoorWall" parent="." instance=ExtResource("5_pugea")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.09522, 2.514173, -12.511587)
+
+[node name="RotatingDoorWall" parent="." instance=ExtResource("7_2nm34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, 0)

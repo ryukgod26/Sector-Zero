@@ -1,5 +1,5 @@
 class_name DoorComponent
-extends Area3D
+extends Node
 
 enum DoorType {Sliding, Rotating, Physics}
 enum ForwardDirection {X,Y,Z}

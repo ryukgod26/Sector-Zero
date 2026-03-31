@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4f1naa6awc0c"]
+
+[ext_resource type="Script" uid="uid://denhs78b2y2nh" path="res://Scenes/Player2/player_2.gd" id="1_r6wck"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lbknr"]
+
+[node name="Player2" type="CharacterBody3D"]
+script = ExtResource("1_r6wck")
+
+[node name="MainCamera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
+
+[node name="WeaponsManager" type="Node3D" parent="MainCamera"]
+
+[node name="FPSRig" type="Node3D" parent="MainCamera/WeaponsManager"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0037887, 0)
+shape = SubResource("CapsuleShape3D_lbknr")
