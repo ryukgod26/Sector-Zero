@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4f1naa6awc0c"]
+[gd_scene load_steps=6 format=3 uid="uid://d4f1naa6awc0c"]
 
 [ext_resource type="Script" uid="uid://denhs78b2y2nh" path="res://Scenes/Player2/player_2.gd" id="1_r6wck"]
+[ext_resource type="Script" uid="uid://d08enbosbx7hk" path="res://Scripts/Weapons/weapons_manager.gd" id="2_d1rh2"]
+[ext_resource type="PackedScene" uid="uid://wm2ufg26wgvo" path="res://Scenes/Weapons/assault_rifle.tscn" id="2_lbknr"]
+[ext_resource type="Script" uid="uid://ds3143bu6cw4x" path="res://Scripts/Weapons/weapons.gd" id="3_8kev6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lbknr"]
 
@@ -12,8 +15,13 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
 
 [node name="WeaponsManager" type="Node3D" parent="MainCamera"]
+script = ExtResource("2_d1rh2")
+_weapon_resources = Array[ExtResource("3_8kev6")]([null, null, null])
+start_weapons = Array[String](["blaster0", "blaster1"])
 
 [node name="FPSRig" type="Node3D" parent="MainCamera/WeaponsManager"]
+
+[node name="AssaultRifle" parent="MainCamera/WeaponsManager/FPSRig" instance=ExtResource("2_lbknr")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0037887, 0)
