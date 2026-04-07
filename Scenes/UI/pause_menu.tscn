@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://tjv4gad8deka"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+
+[node name="Sectorlbl" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.5
+offset_right = 24.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Sector"
+
+[node name="Zerolbl" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 26.0
+offset_right = 20.0
+offset_bottom = 49.0
+grow_horizontal = 2
+text = "Zero"
+
+[node name="Pauselbl" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Pause"
+
+[node name="Menulbl" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Menu"
+
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Resume" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Quit" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

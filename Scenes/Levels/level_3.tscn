@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://ckw5dkt4wtmxy"]
+[gd_scene load_steps=14 format=3 uid="uid://ckw5dkt4wtmxy"]
 
 [ext_resource type="PackedScene" uid="uid://cmtegt1anmu5w" path="res://Scenes/test/WE_Test.tscn" id="1_nfly3"]
 [ext_resource type="PackedScene" uid="uid://d0fle8aju5vsx" path="res://Scenes/Door/physics_door.tscn" id="2_nfly3"]
+[ext_resource type="Material" uid="uid://ct7vfenii8hhc" path="res://Materials/ground.tres" id="2_rc141"]
 [ext_resource type="PackedScene" uid="uid://bocjrdjn6oogc" path="res://Scenes/Player/player.tscn" id="3_rc141"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yy6i0"]
+[ext_resource type="Material" uid="uid://of8l0pbj47do" path="res://Materials/walls.tres" id="3_yy6i0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_167vu"]
 
@@ -35,7 +35,7 @@ data = PackedVector3Array(-0.5, -2.5, 3.243, -0.5, -2.5, -3.243, -0.5, 2.5, -3.2
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(18.765, 0, 0, 0, 0.483, 0, 0, 0, 20, 0, -3.2977839, 0)
-material_override = SubResource("StandardMaterial3D_yy6i0")
+material_override = ExtResource("2_rc141")
 mesh = SubResource("BoxMesh_167vu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
@@ -50,6 +50,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.733, -3, 0.234)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Borders/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+material_override = ExtResource("3_yy6i0")
 size = Vector3(1, 5, 20.381)
 
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Borders/StaticBody3D"]
@@ -61,6 +62,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.839, -3, 0.234)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Borders/StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+material_override = ExtResource("3_yy6i0")
 size = Vector3(1, 5, 20.381)
 
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Borders/StaticBody3D2"]
@@ -72,6 +74,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 9.465)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Borders/StaticBody3D3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+material_override = ExtResource("3_yy6i0")
 size = Vector3(16.732, 5, 1)
 
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Borders/StaticBody3D3"]
@@ -83,6 +86,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -9.467)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Borders/StaticBody3D4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+material_override = ExtResource("3_yy6i0")
 size = Vector3(16.732, 5, 1)
 
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Borders/StaticBody3D4"]
