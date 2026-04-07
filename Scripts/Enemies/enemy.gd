@@ -30,7 +30,17 @@ var return_position: Vector3
 var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready() -> void:
-	pass
+	target = Globals.player
+	_enter_state(EnemyState.IDLE if patrol_points.is_empty() else EnemyState.PATROL)
+
+func _physics_process(delta: float) -> void:
+	_update_path(delta)
+	
+	match state:
+		EnemyState.PATROL: _state_patrol(delta)
+	
+	_apply_gravity(delta)
+	move_and_slide()
 
 func _got_to_next_patrol_point() -> void:
 	patrol_index = (patrol_index + 1) % patrol_points.size()
@@ -60,7 +70,7 @@ func _walk_to(next_pos: Vector3, speed: float) -> void:
 	animation_player.play("Walking")
 	_move_towards(next_pos,speed)
 
-func update_agent_target() -> void:
+func _update_agent_target() -> void:
 	match state:
 		EnemyState.PATROL:
 			if patrol_points.size() > 0:
@@ -73,3 +83,34 @@ func update_agent_target() -> void:
 				navigation_agent.set_target_position(target.global_transform.origin)
 		EnemyState.RETURN:
 			navigation_agent.set_target_position(return_position)
+
+func _update_path(delta):
+	update_timer -= delta
+	if update_timer <= 0.0:
+		_update_agent_target()
+		update_timer = update_interval
+
+func _apply_gravity(delta: float) -> void:
+	if not is_on_floor():
+		velocity.y -= gravity*delta
+	else:
+		velocity.y = 0.
+
+func _enter_state(new_state: EnemyState) -> void:
+	state = new_state
+	match state:
+		EnemyState.PATROL:
+			patrol_timer = 0
+			_got_to_next_patrol_point()
+
+func _state_patrol(delta: float) -> void:
+	if navigation_agent.is_navigation_finished():
+		if patrol_timer < 0.0:
+			patrol_timer = patrol_wait_time
+			_stop_and_idle()
+		else:
+			patrol_timer -= delta
+			if patrol_timer <= 0.:
+				_got_to_next_patrol_point()
+	else:
+		_walk_to(navigation_agent.get_next_path_position(),speed_walk)
