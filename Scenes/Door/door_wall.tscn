@@ -30,10 +30,6 @@ mesh = SubResource("BoxMesh_37vc2")
 
 [node name="Label3D" type="Label3D" parent="AnimatableBody3D/Door"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4434958, -0.0054426193)
-shape = SubResource("ConvexPolygonShape3D_pugea")
-
 [node name="DoorComponent" type="Node" parent="AnimatableBody3D"]
 script = ExtResource("1_u4qnb")
 transition_type = 7
@@ -44,3 +40,7 @@ metadata/_custom_type_script = "uid://ba2vttynkmn0p"
 script = ExtResource("2_qxckx")
 mesh = NodePath("../Door")
 metadata/_custom_type_script = "uid://dlo5umtapr8p1"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4434959, -0.0054426193)
+shape = SubResource("ConvexPolygonShape3D_pugea")
