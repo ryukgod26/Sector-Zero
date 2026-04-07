@@ -1,0 +1,152 @@
+[gd_scene load_steps=10 format=3 uid="uid://c2u2ac56fsfs0"]
+
+[ext_resource type="Texture2D" uid="uid://dce2ey6o5cgal" path="res://assets/Weapons/Decales/Bullet_Decale/bullet_hole.png" id="1_dmfpq"]
+[ext_resource type="Script" uid="uid://cdnp47spxwn6j" path="res://Scripts/UI/level_selecttor.gd" id="1_imfed"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmfpq"]
+bg_color = Color(0.3515629, 0.35156292, 0.35156274, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imfed"]
+bg_color = Color(0.14406255, 0.14406255, 0.14406249, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_size = 5
+shadow_offset = Vector2(2, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bu3d"]
+bg_color = Color(0.27664346, 0.35603747, 0.3801738, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_size = 5
+shadow_offset = Vector2(2, 3)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ffpa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ai8yl"]
+bg_color = Color(0.14406255, 0.14406255, 0.14406249, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_size = 5
+shadow_offset = Vector2(2, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cligj"]
+bg_color = Color(0.27664346, 0.35603747, 0.3801738, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_size = 5
+shadow_offset = Vector2(2, 3)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6b8r1"]
+
+[node name="LevelSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_imfed")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5890956, 0.5890956, 0.5890956, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.28828126
+anchor_top = 0.14027777
+anchor_right = 0.7015625
+anchor_bottom = 0.3236111
+theme_override_font_sizes/font_size = 96
+text = "Sector Zero"
+metadata/_edit_use_anchors_ = true
+
+[node name="BulletHole" type="Sprite2D" parent="."]
+position = Vector2(150.5, 178)
+scale = Vector2(0.34570313, 0.34765628)
+texture = ExtResource("1_dmfpq")
+
+[node name="BulletHole2" type="Sprite2D" parent="."]
+position = Vector2(1143, 214)
+scale = Vector2(0.37109375, 0.35546875)
+texture = ExtResource("1_dmfpq")
+
+[node name="BulletHole3" type="Sprite2D" parent="."]
+position = Vector2(1139, 493)
+scale = Vector2(0.37109375, 0.35546875)
+texture = ExtResource("1_dmfpq")
+
+[node name="BulletHole4" type="Sprite2D" parent="."]
+position = Vector2(176.99988, 492.99994)
+rotation = 0.60483575
+scale = Vector2(0.37109375, 0.35546875)
+texture = ExtResource("1_dmfpq")
+
+[node name="ButtonManager" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.024
+offset_left = 502.0
+offset_top = 298.0
+offset_right = 848.28
+offset_bottom = 662.0
+theme_override_constants/separation = 40
+
+[node name="Level1" type="Button" parent="ButtonManager"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_dmfpq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_imfed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0bu3d")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1ffpa")
+text = "Level 1"
+
+[node name="Level2" type="Button" parent="ButtonManager"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_dmfpq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ai8yl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cligj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6b8r1")
+text = "Level 2"
+
+[node name="Level3" type="Button" parent="ButtonManager"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_dmfpq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ai8yl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cligj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6b8r1")
+text = "Level 3"
+
+[node name="TestPlay" type="Button" parent="ButtonManager"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_dmfpq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ai8yl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cligj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6b8r1")
+text = "Test"
+
+[connection signal="pressed" from="ButtonManager/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="ButtonManager/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="ButtonManager/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="ButtonManager/TestPlay" to="." method="_on_test_play_pressed"]
