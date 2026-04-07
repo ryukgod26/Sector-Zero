@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://blo8wds5eaosi"]
+[gd_scene load_steps=14 format=3 uid="uid://blo8wds5eaosi"]
 
 [ext_resource type="PackedScene" uid="uid://cmtegt1anmu5w" path="res://Scenes/test/WE_Test.tscn" id="1_oylv5"]
 [ext_resource type="PackedScene" uid="uid://cils0ndobwlx7" path="res://Scenes/Door/rotating_door_wall.tscn" id="2_w2ac1"]
 [ext_resource type="PackedScene" uid="uid://bocjrdjn6oogc" path="res://Scenes/Player/player.tscn" id="3_ovj6s"]
+[ext_resource type="PackedScene" uid="uid://y3no4qem5qh0" path="res://Scenes/Enemies/enemy.tscn" id="4_w2ac1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qsmg"]
 
@@ -119,3 +120,27 @@ shape = SubResource("ConcavePolygonShape3D_eopvx")
 
 [node name="Player" parent="Entities" instance=ExtResource("3_ovj6s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5426283, -2.402509, 0)
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("4_w2ac1")]
+patrol_points = [NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+
+[node name="PatrolPoints" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="Point1" type="Marker3D" parent="PatrolPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4645004, 0, -8.23865)
+
+[node name="Point2" type="Marker3D" parent="PatrolPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7302227, 0, -8.23865)
+
+[node name="Point3" type="Marker3D" parent="PatrolPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7302227, 0, -0.6798372)
+
+[node name="Point4" type="Marker3D" parent="PatrolPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7302227, 0, 7.0789013)
+
+[node name="Point5" type="Marker3D" parent="PatrolPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9397564, 0, 7.0789013)
+
+[node name="Point6" type="Marker3D" parent="PatrolPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9397564, 0, 2.2285337)

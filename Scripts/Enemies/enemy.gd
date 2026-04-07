@@ -39,7 +39,10 @@ func _physics_process(delta: float) -> void:
 	match state:
 		EnemyState.IDLE: _state_idle()
 		EnemyState.PATROL: _state_patrol(delta)
+		EnemyState.INVESTIGATE: _state_investigation(delta)
 		EnemyState.CHASE: _state_chase(delta)
+		EnemyState.ATTACK: _state_attack()
+		EnemyState.RETURN: _state_return(delta)
 	
 	_looking()
 	_apply_gravity(delta)
@@ -140,6 +143,11 @@ func _enter_state(new_state: EnemyState) -> void:
 		EnemyState.PATROL:
 			patrol_timer = 0
 			_got_to_next_patrol_point()
+		EnemyState.INVESTIGATE:
+			investigate_timer = 0.
+			navigation_agent.set_target_position(investigate_position)
+		EnemyState.CHASE,EnemyState.INVESTIGATE:
+			return_position = global_transform.origin
 
 func _state_patrol(delta: float) -> void:
 	if navigation_agent.is_navigation_finished():
@@ -176,3 +184,17 @@ func _state_investigation(delta: float) -> void:
 	
 	if _can_see_player():
 		_enter_state(EnemyState.CHASE)
+
+func _state_return(delta: float) -> void:
+	if navigation_agent.is_navigation_finished():
+		_enter_state(EnemyState.PATROL)
+	else:
+		_walk_to(navigation_agent.get_next_path_position(),speed_walk)
+	
+	if _can_see_player():
+		_enter_state(EnemyState.CHASE)
+
+func hear_noise(pos: Vector3) -> void:
+	if state not in [EnemyState.CHASE,EnemyState.ATTACK]:
+		investigate_position = pos
+		_enter_state(EnemyState.INVESTIGATE)
