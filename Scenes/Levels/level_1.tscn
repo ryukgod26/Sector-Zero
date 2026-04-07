@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://brnhpqt64sojh"]
+[gd_scene load_steps=13 format=3 uid="uid://brnhpqt64sojh"]
 
 [ext_resource type="PackedScene" uid="uid://cmtegt1anmu5w" path="res://Scenes/test/WE_Test.tscn" id="1_tlcug"]
 [ext_resource type="PackedScene" uid="uid://cclwtquqn7nvt" path="res://Scenes/Door/door_wall.tscn" id="2_4dpyx"]
+[ext_resource type="PackedScene" uid="uid://bocjrdjn6oogc" path="res://Scenes/Player/player.tscn" id="3_3mqfk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlcug"]
 
@@ -22,6 +23,12 @@ data = PackedVector3Array(-8.366, -2.5, 0.5, -8.366, -2.5, -0.5, -8.366, 2.5, -0
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_cyadu"]
 data = PackedVector3Array(-8.366, -2.5, 0.5, -8.366, -2.5, -0.5, -8.366, 2.5, -0.5, 8.366, -2.5, -0.5, -8.366, -2.5, -0.5, -8.366, -2.5, 0.5, -8.366, 2.5, -0.5, -8.366, -2.5, -0.5, 8.366, -2.5, -0.5, -8.366, 2.5, -0.5, -8.366, 2.5, 0.5, -8.366, -2.5, 0.5, -8.366, -2.5, 0.5, -8.366, 2.5, 0.5, 8.366, 2.5, 0.5, 8.366, 2.5, 0.5, -8.366, 2.5, 0.5, -8.366, 2.5, -0.5, -8.366, -2.5, 0.5, 8.366, -2.5, 0.5, 8.366, -2.5, -0.5, 8.366, 2.5, 0.5, 8.366, -2.5, 0.5, -8.366, -2.5, 0.5, 8.366, -2.5, -0.5, 8.366, -2.5, 0.5, 8.366, 2.5, 0.5, 8.366, -2.5, -0.5, 8.366, 2.5, -0.5, -8.366, 2.5, -0.5, -8.366, 2.5, -0.5, 8.366, 2.5, -0.5, 8.366, 2.5, 0.5, 8.366, 2.5, 0.5, 8.366, 2.5, -0.5, 8.366, -2.5, -0.5)
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5f3p6"]
+data = PackedVector3Array(-0.5, -2.5, 3.243, -0.5, -2.5, -3.243, -0.5, 2.5, -3.243, 0.5, -2.5, -3.243, -0.5, -2.5, -3.243, -0.5, -2.5, 3.243, -0.5, 2.5, -3.243, -0.5, -2.5, -3.243, 0.5, -2.5, -3.243, -0.5, 2.5, -3.243, -0.5, 2.5, 3.243, -0.5, -2.5, 3.243, -0.5, -2.5, 3.243, -0.5, 2.5, 3.243, 0.5, 2.5, 3.243, 0.5, 2.5, 3.243, -0.5, 2.5, 3.243, -0.5, 2.5, -3.243, -0.5, -2.5, 3.243, 0.5, -2.5, 3.243, 0.5, -2.5, -3.243, 0.5, 2.5, 3.243, 0.5, -2.5, 3.243, -0.5, -2.5, 3.243, 0.5, -2.5, -3.243, 0.5, -2.5, 3.243, 0.5, 2.5, 3.243, 0.5, -2.5, -3.243, 0.5, 2.5, -3.243, -0.5, 2.5, -3.243, -0.5, 2.5, -3.243, 0.5, 2.5, -3.243, 0.5, 2.5, 3.243, 0.5, 2.5, 3.243, 0.5, 2.5, -3.243, 0.5, -2.5, -3.243)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jv26f"]
+data = PackedVector3Array(-0.5, -2.5, 3.243, -0.5, -2.5, -3.243, -0.5, 2.5, -3.243, 0.5, -2.5, -3.243, -0.5, -2.5, -3.243, -0.5, -2.5, 3.243, -0.5, 2.5, -3.243, -0.5, -2.5, -3.243, 0.5, -2.5, -3.243, -0.5, 2.5, -3.243, -0.5, 2.5, 3.243, -0.5, -2.5, 3.243, -0.5, -2.5, 3.243, -0.5, 2.5, 3.243, 0.5, 2.5, 3.243, 0.5, 2.5, 3.243, -0.5, 2.5, 3.243, -0.5, 2.5, -3.243, -0.5, -2.5, 3.243, 0.5, -2.5, 3.243, 0.5, -2.5, -3.243, 0.5, 2.5, 3.243, 0.5, -2.5, 3.243, -0.5, -2.5, 3.243, 0.5, -2.5, -3.243, 0.5, -2.5, 3.243, 0.5, 2.5, 3.243, 0.5, -2.5, -3.243, 0.5, 2.5, -3.243, -0.5, 2.5, -3.243, -0.5, 2.5, -3.243, 0.5, 2.5, -3.243, 0.5, 2.5, 3.243, 0.5, 2.5, 3.243, 0.5, 2.5, -3.243, 0.5, -2.5, -3.243)
+
 [node name="Level1" type="Node3D"]
 
 [node name="WE_Test" parent="." instance=ExtResource("1_tlcug")]
@@ -39,7 +46,7 @@ shape = SubResource("ConcavePolygonShape3D_3mqfk")
 [node name="Borders" type="Node3D" parent="."]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Borders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.73316, -2.462741, 0.23360729)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.733, -3, 0.234)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Borders/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
@@ -50,7 +57,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("ConcavePolygonShape3D_xgxfi")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="Borders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.839, -2.463, 0.234)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.839, -3, 0.234)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Borders/StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
@@ -61,7 +68,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("ConcavePolygonShape3D_4dpyx")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="Borders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.463, 9.464718)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 9.465)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Borders/StaticBody3D3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
@@ -72,7 +79,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("ConcavePolygonShape3D_iixi8")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="Borders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.463, -9.467272)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -9.467)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Borders/StaticBody3D4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
@@ -83,8 +90,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("ConcavePolygonShape3D_cyadu")
 
 [node name="Doors" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3251085, 0, 0)
 
-[node name="DoorWall" parent="Doors" instance=ExtResource("2_4dpyx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+[node name="Door1" type="Node3D" parent="Doors"]
 
-[editable path="Doors/DoorWall"]
+[node name="DoorWall" parent="Doors/Door1" instance=ExtResource("2_4dpyx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.42173856, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Doors/Door1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.42173856, -5.6726146)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Doors/Door1/StaticBody3D"]
+size = Vector3(1, 5, 6.486)
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Doors/Door1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5f3p6")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Doors/Door1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.42173856, 5.7452817)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Doors/Door1/StaticBody3D2"]
+size = Vector3(1, 5, 6.486)
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Doors/Door1/StaticBody3D2"]
+shape = SubResource("ConcavePolygonShape3D_jv26f")
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource("3_3mqfk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5426283, -2.402509, 0)
+
+[editable path="Doors/Door1/DoorWall"]
