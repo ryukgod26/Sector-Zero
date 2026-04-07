@@ -37,10 +37,30 @@ func _physics_process(delta: float) -> void:
 	_update_path(delta)
 	
 	match state:
+		EnemyState.IDLE: _state_idle()
 		EnemyState.PATROL: _state_patrol(delta)
+		EnemyState.CHASE: _state_chase(delta)
 	
+	_looking()
 	_apply_gravity(delta)
 	move_and_slide()
+
+func _can_see_player() -> bool:
+	return target and vision_ray.is_colliding() and vision_ray.get_collider() == target
+
+func _looking() -> void:
+	if not target:
+		return
+	
+	var to_player = (target.global_transform.origin - global_transform.origin).normalized()
+	var forward = -global_transform.basis.z
+	var angle_deg = rad_to_deg(acos(clamp(forward.dot(to_player),-1.,1.)))
+	if angle_deg > VIEW_ANGLE * .5:
+		return
+	
+	var ray_forward = -vision_ray.global_transform.basis.z
+	var new_dir  = ray_forward.slerp(to_player,SMOOTHING_FACTOR).normalized()
+	vision_ray.look_at(vision_ray.glo.origin + new_dir,Vector3.UP)
 
 func _got_to_next_patrol_point() -> void:
 	patrol_index = (patrol_index + 1) % patrol_points.size()
@@ -70,7 +90,25 @@ func _walk_to(next_pos: Vector3, speed: float) -> void:
 	animation_player.play("Walking")
 	_move_towards(next_pos,speed)
 
+func _state_idle() -> void:
+	if _can_see_player():
+		_enter_state(EnemyState.CHASE)
+
+func _state_chase(delta: float) -> void:
+	if not target:
+		_enter_state(EnemyState.RETURN)
+		return
+	
+	_walk_to(navigation_agent.get_next_path_position(),speed_run)
+	
+	if global_transform.origin.distance_to(target.global_transform.origin) < attack_range:
+		_enter_state(EnemyState.ATTACK)
+	elif  not _can_see_player():
+		investigate_position = target.global_transform.origin
+		_enter_state(EnemyState.INVESTIGATE)
+
 func _update_agent_target() -> void:
+	target = Globals.player
 	match state:
 		EnemyState.PATROL:
 			if patrol_points.size() > 0:
@@ -114,3 +152,27 @@ func _state_patrol(delta: float) -> void:
 				_got_to_next_patrol_point()
 	else:
 		_walk_to(navigation_agent.get_next_path_position(),speed_walk)
+	
+	if _can_see_player():
+		_enter_state(EnemyState.CHASE)
+
+func _state_attack() -> void:
+	velocity = Vector3.ZERO
+	animation_player.play("Attack")
+	await animation_player.animation_finished
+	_enter_state(EnemyState.CHASE)
+
+func _state_investigation(delta: float) -> void:
+	if navigation_agent.is_navigation_finished():
+		if investigate_timer <= 0.:
+			investigate_timer = investigate_wait_time
+			_stop_and_idle()
+		else:
+			investigate_timer -= delta
+			if investigate_timer <= 0.:
+				_enter_state(EnemyState.RETURN)
+	else:
+		_walk_to(navigation_agent.get_next_path_position(),speed_walk)
+	
+	if _can_see_player():
+		_enter_state(EnemyState.CHASE)

@@ -1,14 +1,16 @@
-[gd_scene load_steps=12 format=4 uid="uid://y3no4qem5qh0"]
+[gd_scene load_steps=13 format=4 uid="uid://y3no4qem5qh0"]
 
 [ext_resource type="Script" uid="uid://b2t7stydjtvh2" path="res://Scripts/Enemies/enemy.gd" id="1_613su"]
 [ext_resource type="Animation" uid="uid://3edqe7g08ffx" path="res://assets/Enemies/Anim_import/Walking.res" id="3_ubio8"]
 [ext_resource type="Animation" uid="uid://i4iw5tf8i0id" path="res://assets/Enemies/Anim_import/Idle.res" id="3_x1rqp"]
+[ext_resource type="Animation" uid="uid://cf52mcbmll70j" path="res://assets/Enemies/Anim_import/Attack.res" id="4_ubio8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x1rqp"]
 radius = 0.22216797
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x1rqp"]
 _data = {
+&"Attack": ExtResource("4_ubio8"),
 &"Idle": ExtResource("3_x1rqp"),
 &"Walking": ExtResource("3_ubio8")
 }
