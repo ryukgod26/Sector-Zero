@@ -51,3 +51,25 @@ func _move_towards(next_pos: Vector3, speed: float) -> void:
 	
 	velocity.x = dir.x * speed
 	velocity.y = dir.y * speed
+
+func _stop_and_idle() -> void:
+	velocity = Vector3.ZERO
+	animation_player.play("Idle")
+
+func _walk_to(next_pos: Vector3, speed: float) -> void:
+	animation_player.play("Walking")
+	_move_towards(next_pos,speed)
+
+func update_agent_target() -> void:
+	match state:
+		EnemyState.PATROL:
+			if patrol_points.size() > 0:
+				navigation_agent.set_target_position(patrol_points[patrol_index].global_position)
+		
+		EnemyState.INVESTIGATE:
+			navigation_agent.set_target_position(investigate_position)
+		EnemyState.CHASE:
+			if target:
+				navigation_agent.set_target_position(target.global_transform.origin)
+		EnemyState.RETURN:
+			navigation_agent.set_target_position(return_position)

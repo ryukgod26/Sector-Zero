@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dibvlvkkdtu0q"
-path="res://.godot/imported/Walking.fbx-96778ab81658828566e1fb2e815d5b87.scn"
+uid="uid://d4jqurycgxlsl"
+path="res://.godot/imported/Idle.fbx-01d1811bebd9102011596a6fb0b8c30b.scn"
 
 [deps]
 
-source_file="res://assets/Enemies/Animations/Walking.fbx"
-dest_files=["res://.godot/imported/Walking.fbx-96778ab81658828566e1fb2e815d5b87.scn"]
+source_file="res://assets/Enemies/Animations/Idle.fbx"
+dest_files=["res://.godot/imported/Idle.fbx-01d1811bebd9102011596a6fb0b8c30b.scn"]
 
 [params]
 
@@ -41,10 +41,10 @@ _subresources={
 "animations": {
 "mixamo_com": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/Enemies/Anim_import/Walking.res",
-"save_to_file/keep_custom_tracks": false,
-"save_to_file/path": "uid://743md05hy1nt",
-"settings/loop_mode": 1,
+"save_to_file/fallback_path": "res://assets/Enemies/Anim_import/Idle.res",
+"save_to_file/keep_custom_tracks": "",
+"save_to_file/path": "uid://d2pti5jqp0tyr",
+"settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
 "slice_1/name": "",
