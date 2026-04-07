@@ -10,6 +10,7 @@ radius = 0.22216797
 script = ExtResource("1_613su")
 
 [node name="X Bot" parent="." instance=ExtResource("2_jcvw6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7839432, 0)
@@ -19,4 +20,6 @@ shape = SubResource("CapsuleShape3D_x1rqp")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="VisionRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6101499, 0)
+target_position = Vector3(0, 0, -10)
