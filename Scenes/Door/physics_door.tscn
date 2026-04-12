@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0fle8aju5vsx"]
+[gd_scene load_steps=8 format=3 uid="uid://d0fle8aju5vsx"]
 
 [ext_resource type="Script" uid="uid://ba2vttynkmn0p" path="res://Scripts/Door/door.gd" id="1_4vl2u"]
 [ext_resource type="Script" uid="uid://dlo5umtapr8p1" path="res://Scripts/Player/interaction_component.gd" id="2_n7yy5"]
@@ -15,47 +15,57 @@ points = PackedVector3Array(-0.027453482, -1.1172416, -0.76746035, 0.04237412, 1
 [sub_resource type="SphereShape3D" id="SphereShape3D_fawjo"]
 radius = 0.9582198
 
-[node name="PhysicsDoor" type="CSGBox3D"]
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4vl2u"]
+data = PackedVector3Array(-0.45, -2.5, -2.5, -0.45, -0.33046544, -0.75, -0.45, -2.5, -0.75, -0.45, -2.5, -2.5, -0.45, 2.5, -2.5, -0.45, -0.33046544, -0.75, -0.45, -2.5, -2.5, -0.45, -2.5, -0.75, 0.45, -2.5, -2.5, -0.45, -2.5, -2.5, 0.45, -2.5, -2.5, -0.45, 2.5, -2.5, -0.45, -2.5, 2.5, -0.45, -2.5, 0.75, -0.45, 2.5, 2.5, -0.45, 2.5, 2.5, -0.45, -2.5, 0.75, -0.45, -0.33046544, 0.75, -0.45, -2.5, 2.5, 0.45, -2.5, 0.75, -0.45, -2.5, 0.75, -0.45, 2.5, -2.5, -0.45, -0.33046544, 0.75, -0.45, -0.33046544, -0.75, -0.45, 2.5, -2.5, -0.45, 2.5, 2.5, -0.45, -0.33046544, 0.75, -0.45, -2.5, 2.5, -0.45, 2.5, 2.5, 0.45, 2.5, 2.5, -0.45, 2.5, -2.5, 0.45, 2.5, 2.5, -0.45, 2.5, 2.5, 0.45, -2.5, -2.5, -0.45, -2.5, -0.75, 0.45, -2.5, -0.75, 0.45, -2.5, -2.5, 0.45, -2.5, -0.75, 0.45, 2.5, -2.5, 0.45, 2.5, -2.5, 0.45, -2.5, -0.75, 0.45, -0.33046544, -0.75, -0.45, -2.5, 2.5, 0.45, -2.5, 2.5, 0.45, -2.5, 0.75, -0.45, -2.5, 2.5, 0.45, 2.5, 2.5, 0.45, -2.5, 2.5, 0.45, -2.5, 2.5, 0.45, -0.33046544, 0.75, 0.45, -2.5, 0.75, 0.45, -2.5, 2.5, 0.45, 2.5, 2.5, 0.45, -0.33046544, 0.75, -0.45, 2.5, -2.5, 0.45, -2.5, -2.5, 0.45, 2.5, -2.5, -0.45, 2.5, -2.5, 0.45, 2.5, -2.5, 0.45, 2.5, 2.5, 0.45, 2.5, -2.5, 0.45, -0.33046544, -0.75, 0.45, 2.5, 2.5, 0.45, 2.5, 2.5, 0.45, -0.33046544, -0.75, 0.45, -0.33046544, 0.75, -0.45, -2.5, -0.75, -0.45, -0.33046544, -0.75, 0.45, -2.5, -0.75, -0.45, -0.33046544, -0.75, -0.45, -0.33046544, 0.75, 0.45, -0.33046544, -0.75, -0.45, -2.5, 0.75, 0.45, -0.33046544, 0.75, -0.45, -0.33046544, 0.75, 0.45, -2.5, -0.75, -0.45, -0.33046544, -0.75, 0.45, -0.33046544, -0.75, 0.45, -2.5, 0.75, 0.45, -0.33046544, 0.75, -0.45, -2.5, 0.75, -0.45, -0.33046544, 0.75, 0.45, -0.33046544, 0.75, 0.45, -0.33046544, -0.75)
+
+[node name="PhysicsDoorNode" type="Node3D"]
+
+[node name="PhysicsDoor" type="CSGBox3D" parent="."]
 material_override = SubResource("StandardMaterial3D_u4qnb")
 size = Vector3(0.9, 5, 5)
 
-[node name="DoorWay" type="CSGBox3D" parent="."]
+[node name="DoorWay" type="CSGBox3D" parent="PhysicsDoor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014678955, -1.4304655, 0)
 operation = 2
 size = Vector3(1, 2.2, 1.5)
 
-[node name="RigidBody" type="RigidBody3D" parent="DoorWay"]
+[node name="RigidBody" type="RigidBody3D" parent="PhysicsDoor/DoorWay"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014678955, 0.49252594, 0.7391407)
-visible = false
 
-[node name="Door" type="MeshInstance3D" parent="DoorWay/RigidBody"]
+[node name="Door" type="MeshInstance3D" parent="PhysicsDoor/DoorWay/RigidBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0752902, -0.041933835, -0.49378264, -0.7136915)
 mesh = SubResource("BoxMesh_37vc2")
 
-[node name="Label3D" type="Label3D" parent="DoorWay/RigidBody/Door"]
+[node name="Label3D" type="Label3D" parent="PhysicsDoor/DoorWay/RigidBody/Door"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorWay/RigidBody"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicsDoor/DoorWay/RigidBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.47240126, -0.74570316)
 shape = SubResource("ConvexPolygonShape3D_pugea")
 
-[node name="DoorComponent" type="Area3D" parent="DoorWay/RigidBody"]
+[node name="DoorComponent" type="Area3D" parent="PhysicsDoor/DoorWay/RigidBody"]
 script = ExtResource("1_4vl2u")
+door_type = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorWay/RigidBody/DoorComponent"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicsDoor/DoorWay/RigidBody/DoorComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2941357, -0.5523087)
 shape = SubResource("SphereShape3D_fawjo")
 
-[node name="InteractionComponent" type="Node" parent="DoorWay/RigidBody" node_paths=PackedStringArray("mesh")]
+[node name="InteractionComponent" type="Node" parent="PhysicsDoor/DoorWay/RigidBody" node_paths=PackedStringArray("mesh")]
 script = ExtResource("2_n7yy5")
 mesh = NodePath("../Door")
 metadata/_custom_type_script = "uid://dlo5umtapr8p1"
 
-[node name="HingeJoint3D" type="HingeJoint3D" parent="DoorWay"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+[node name="HingeJoint3D" type="HingeJoint3D" parent="PhysicsDoor/DoorWay"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.74689245)
 node_a = NodePath("../RigidBody")
 angular_limit/enable = true
 angular_limit/bias = 0.2
 angular_limit/softness = 8.0
 
-[connection signal="body_entered" from="DoorWay/RigidBody/DoorComponent" to="DoorWay/RigidBody/DoorComponent" method="open_door_trigger"]
-[connection signal="body_exited" from="DoorWay/RigidBody/DoorComponent" to="DoorWay/RigidBody/DoorComponent" method="close_door_trigger"]
+[node name="StaticBody3D" type="StaticBody3D" parent="PhysicsDoor"]
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="PhysicsDoor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4vl2u")
+
+[connection signal="body_entered" from="PhysicsDoor/DoorWay/RigidBody/DoorComponent" to="PhysicsDoor/DoorWay/RigidBody/DoorComponent" method="open_door_trigger"]
+[connection signal="body_exited" from="PhysicsDoor/DoorWay/RigidBody/DoorComponent" to="PhysicsDoor/DoorWay/RigidBody/DoorComponent" method="close_door_trigger"]

@@ -63,7 +63,7 @@ func _looking() -> void:
 	
 	var ray_forward = -vision_ray.global_transform.basis.z
 	var new_dir  = ray_forward.slerp(to_player,SMOOTHING_FACTOR).normalized()
-	vision_ray.look_at(vision_ray.glo.origin + new_dir,Vector3.UP)
+	vision_ray.look_at(vision_ray.global_transform.origin + new_dir,Vector3.UP)
 
 func _got_to_next_patrol_point() -> void:
 	patrol_index = (patrol_index + 1) % patrol_points.size()
@@ -72,18 +72,18 @@ func _got_to_next_patrol_point() -> void:
 func _move_towards(next_pos: Vector3, speed: float) -> void:
 	var dir = (next_pos - global_transform.origin)
 	dir.y = 0.
-	if is_zero_approx( dir.length() ):
-		velocity.x = lerp(velocity.x,0.,SMOOTHING_FACTOR)
-		velocity.y = lerp(velocity.y,0.,SMOOTHING_FACTOR)
+	if is_zero_approx(dir.length()):
+		velocity.x = lerp(velocity.x, 0., SMOOTHING_FACTOR)
+		velocity.z = lerp(velocity.z, 0., SMOOTHING_FACTOR)
 		return
 	
 	dir = dir.normalized()
 	var current_facing = -global_transform.basis.z
-	var new_dir = current_facing.slerp(dir,SMOOTHING_FACTOR).normalized()
-	look_at(global_transform.origin + new_dir,Vector3.UP)
+	var new_dir = current_facing.slerp(dir, SMOOTHING_FACTOR).normalized()
+	look_at(global_transform.origin + new_dir, Vector3.UP)
 	
 	velocity.x = dir.x * speed
-	velocity.y = dir.y * speed
+	velocity.z = dir.z * speed 
 
 func _stop_and_idle() -> void:
 	velocity = Vector3.ZERO

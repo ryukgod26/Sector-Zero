@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://brnhpqt64sojh"]
+[gd_scene load_steps=21 format=3 uid="uid://brnhpqt64sojh"]
 
 [ext_resource type="PackedScene" uid="uid://cmtegt1anmu5w" path="res://Scenes/test/WE_Test.tscn" id="1_tlcug"]
 [ext_resource type="PackedScene" uid="uid://cclwtquqn7nvt" path="res://Scenes/Door/door_wall.tscn" id="2_4dpyx"]
@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://bocjrdjn6oogc" path="res://Scenes/Player/player.tscn" id="3_3mqfk"]
 [ext_resource type="Material" uid="uid://of8l0pbj47do" path="res://Materials/walls.tres" id="3_cyadu"]
 [ext_resource type="PackedScene" uid="uid://y3no4qem5qh0" path="res://Scenes/Enemies/enemy.tscn" id="6_xgxfi"]
+[ext_resource type="Script" uid="uid://dlo5umtapr8p1" path="res://Scripts/Player/interaction_component.gd" id="7_jv26f"]
+[ext_resource type="Script" uid="uid://bp1alpxjl21pl" path="res://Scripts/Interactables/pick_up_component.gd" id="8_rb0md"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_jv26f"]
+vertices = PackedVector3Array(-8.8825, -2.7892838, -9.5, -8.8825, -2.7892838, 9.5, 8.8675, -2.7892838, 9.5, 8.8675, -2.7892838, -9.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4dpyx"]
 
@@ -30,19 +36,31 @@ data = PackedVector3Array(-0.5, -2.5, 3.243, -0.5, -2.5, -3.243, -0.5, 2.5, -3.2
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jv26f"]
 data = PackedVector3Array(-0.5, -2.5, 3.243, -0.5, -2.5, -3.243, -0.5, 2.5, -3.243, 0.5, -2.5, -3.243, -0.5, -2.5, -3.243, -0.5, -2.5, 3.243, -0.5, 2.5, -3.243, -0.5, -2.5, -3.243, 0.5, -2.5, -3.243, -0.5, 2.5, -3.243, -0.5, 2.5, 3.243, -0.5, -2.5, 3.243, -0.5, -2.5, 3.243, -0.5, 2.5, 3.243, 0.5, 2.5, 3.243, 0.5, 2.5, 3.243, -0.5, 2.5, 3.243, -0.5, 2.5, -3.243, -0.5, -2.5, 3.243, 0.5, -2.5, 3.243, 0.5, -2.5, -3.243, 0.5, 2.5, 3.243, 0.5, -2.5, 3.243, -0.5, -2.5, 3.243, 0.5, -2.5, -3.243, 0.5, -2.5, 3.243, 0.5, 2.5, 3.243, 0.5, -2.5, -3.243, 0.5, 2.5, -3.243, -0.5, 2.5, -3.243, -0.5, 2.5, -3.243, 0.5, 2.5, -3.243, 0.5, 2.5, 3.243, 0.5, 2.5, 3.243, 0.5, 2.5, -3.243, 0.5, -2.5, -3.243)
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_u5ghp"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwvp3"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_afv7b"]
+
 [node name="Level1" type="Node3D"]
 
-[node name="WE_Test" parent="." instance=ExtResource("1_tlcug")]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_jv26f")
 
-[node name="Floor" type="MeshInstance3D" parent="."]
+[node name="Floor" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(18.765, 0, 0, 0, 0.483, 0, 0, 0, 20, 0, -3.2977839, 0)
 material_override = ExtResource("2_iixi8")
 mesh = SubResource("BoxMesh_4dpyx")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_3mqfk")
+
+[node name="WE_Test" parent="." instance=ExtResource("1_tlcug")]
 
 [node name="Borders" type="Node3D" parent="."]
 
@@ -102,6 +120,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3251085, 0, 0)
 [node name="DoorWall" parent="Doors/Door1" instance=ExtResource("2_4dpyx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.42173856, 0)
 
+[node name="DoorComponent" parent="Doors/Door1/DoorWall/DoorWall/AnimatableBody3D" index="1"]
+move_dir = Vector3(0, -2.3, 0)
+door_size = Vector3(0, 1, 0)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Doors/Door1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.42173856, -5.6726146)
 
@@ -126,7 +148,7 @@ shape = SubResource("ConcavePolygonShape3D_jv26f")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5426283, -2.402509, 0)
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("6_xgxfi")]
-patrol_points = [NodePath("../PatrolPoints/Point1"), NodePath("../PatrolPoints/Point2"), NodePath("../PatrolPoints/Point3"), NodePath("../PatrolPoints/Point4"), NodePath("../PatrolPoints/Point5"), NodePath("../PatrolPoints/Point6")]
+patrol_points = [NodePath("../PatrolPoints/Point1"), NodePath("../PatrolPoints/Point2"), NodePath("../PatrolPoints/Point3"), NodePath("../PatrolPoints/Point4"), NodePath("../PatrolPoints/Point5")]
 
 [node name="PatrolPoints" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
@@ -146,5 +168,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7302227, 0, 7.0789013)
 [node name="Point5" type="Marker3D" parent="PatrolPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9397564, 0, 7.0789013)
 
-[node name="Point6" type="Marker3D" parent="PatrolPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9397564, 0, 2.2285337)
+[node name="Objects" type="Node3D" parent="."]
+
+[node name="InteractableBox" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.527, -2.5, 6.844431)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/InteractableBox"]
+shape = SubResource("ConcavePolygonShape3D_u5ghp")
+
+[node name="Box" type="MeshInstance3D" parent="Objects/InteractableBox"]
+material_override = SubResource("StandardMaterial3D_hwvp3")
+mesh = SubResource("BoxMesh_afv7b")
+skeleton = NodePath("../../..")
+
+[node name="InteractionComponent" type="Node" parent="Objects/InteractableBox" node_paths=PackedStringArray("mesh")]
+script = ExtResource("7_jv26f")
+mesh = NodePath("../Box")
+context = "This is a Box"
+metadata/_custom_type_script = "uid://dlo5umtapr8p1"
+
+[node name="PickUpComponent" type="Node" parent="Objects/InteractableBox/InteractionComponent"]
+script = ExtResource("8_rb0md")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, 3.377315, 0.8529514, 0)
+text = "Level 1"
+
+[editable path="Doors/Door1/DoorWall"]

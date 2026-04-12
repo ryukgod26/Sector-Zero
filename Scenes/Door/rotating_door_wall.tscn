@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cils0ndobwlx7"]
+[gd_scene load_steps=9 format=3 uid="uid://cils0ndobwlx7"]
 
 [ext_resource type="Script" uid="uid://ba2vttynkmn0p" path="res://Scripts/Door/door.gd" id="1_21rba"]
 [ext_resource type="Script" uid="uid://dlo5umtapr8p1" path="res://Scripts/Player/interaction_component.gd" id="2_0h2rn"]
@@ -14,6 +14,12 @@ points = PackedVector3Array(-0.027453482, -1.1172416, -0.76746035, 0.04237412, 1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fawjo"]
 radius = 0.9582198
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_07st1"]
+size = Vector3(0.89416504, 2.8125, 4.906555)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ysh8"]
+size = Vector3(0.9033203, 2.118042, 1.7503662)
 
 [node name="RotatingDoorWall" type="CSGBox3D"]
 material_override = SubResource("StandardMaterial3D_u4qnb")
@@ -39,6 +45,7 @@ shape = SubResource("ConvexPolygonShape3D_pugea")
 
 [node name="DoorComponent" type="Area3D" parent="AnimatableBody3D"]
 script = ExtResource("1_21rba")
+door_type = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D/DoorComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2941357, -0.5523087)
@@ -48,6 +55,20 @@ shape = SubResource("SphereShape3D_fawjo")
 script = ExtResource("2_0h2rn")
 mesh = NodePath("../Door")
 metadata/_custom_type_script = "uid://dlo5umtapr8p1"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010070801, 1.0840925, 0.011383057)
+shape = SubResource("BoxShape3D_07st1")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046875, -1.3948406, 1.6184708)
+shape = SubResource("BoxShape3D_3ysh8")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0014648438, -1.3948406, -1.6164933)
+shape = SubResource("BoxShape3D_3ysh8")
 
 [connection signal="body_entered" from="AnimatableBody3D/DoorComponent" to="AnimatableBody3D/DoorComponent" method="open_door_trigger"]
 [connection signal="body_exited" from="AnimatableBody3D/DoorComponent" to="AnimatableBody3D/DoorComponent" method="close_door_trigger"]
